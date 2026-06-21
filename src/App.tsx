@@ -3746,7 +3746,7 @@ function FullReportViewer({
                   </div>
 
                   <div class="markdown-content">
-                    ${formatContent(ed.content)}
+                    ${formatContent(cleanEditorialContent(ed.content))}
                   </div>
 
                   <!-- END SIGNATURE -->

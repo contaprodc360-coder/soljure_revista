@@ -35,6 +35,50 @@ export const getBookChapters = (editorials: Editorial[]): Editorial[] => {
 };
 
 // Markdown AST-like content block parser to render tables and headers properly in all formats
+export function cleanEditorialContent(content: string): string {
+  if (!content) return "";
+  
+  const lines = content.split('\n');
+  const filteredLines = lines.filter(line => {
+    const trimmed = line.trim().toLowerCase();
+    
+    // Check for Vance-Cevallos, Vance-Ceballos or any other fictional author references
+    if (trimmed.includes("vance-cevallos") || trimmed.includes("vance-ceballos") || trimmed.includes("alejandro vance")) {
+      return false;
+    }
+    
+    // Strip headers/rows that say "Por: Consejo Editorial", etc. 
+    if (trimmed.includes("consejo editorial") || trimmed.includes("director editorial") || trimmed.includes("director de publicaciones")) {
+      return false;
+    }
+
+    if (trimmed.startsWith("por:") || trimmed.startsWith("*por:") || trimmed.startsWith("**por:") || trimmed.startsWith("***por:")) {
+      return false;
+    }
+
+    if (trimmed.startsWith("por ") && (trimmed.includes("editorial") || trimmed.includes("autor") || trimmed.includes("soljure") || trimmed.includes("doctor") || trimmed.includes("abg") || trimmed.includes("abogado") || trimmed.includes("equipo"))) {
+      return false;
+    }
+    
+    if (trimmed.includes("revista de soluciones") || trimmed.includes("soluciones jurídicas") || trimmed.includes("edición especial")) {
+      return false;
+    }
+
+    if (trimmed.includes("soljure publishing") || trimmed.includes("semanario de vanguardia")) {
+      return false;
+    }
+
+    // Block markdown block fields declaring authorship
+    if (trimmed.match(/^#+\s*por\s+el\s+autor/) || trimmed.match(/^#+\s*autores/) || trimmed.match(/^#+\s*director\s+editorial/) || trimmed.match(/^#+\s*escrito\s+por/)) {
+      return false;
+    }
+
+    return true;
+  });
+
+  return filteredLines.join('\n').trim();
+}
+
 interface ContentBlock {
   type: 'paragraph' | 'heading2' | 'heading3' | 'table';
   text: string;
@@ -42,7 +86,8 @@ interface ContentBlock {
 }
 
 export const parseContentBlocks = (content: string): ContentBlock[] => {
-  const lines = content.split('\n');
+  const cleaned = cleanEditorialContent(content);
+  const lines = cleaned.split('\n');
   const blocks: ContentBlock[] = [];
   let currentTableRows: string[][] = [];
 

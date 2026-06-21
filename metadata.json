@@ -1,0 +1,11 @@
+{
+  "name": "SOLJURE",
+  "description": "Plataforma editorial y revista digital de soluciones jurídicas eficaces . Expertos en derecho, laboral, civil comercial, penal, y tributario aduanero. derecho administrativo, constitucional",
+  "requestFramePermissions": [
+    "display-capture",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

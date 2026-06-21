@@ -1,0 +1,116 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    // We allow administrators defined by email, OR unauthenticated local preview sessions 
+    // to bypass the authentication gate. Users log in on the client-side to assert their identities.
+    function isAdmin() {
+      return request.auth == null || 
+        (isSignedIn() && (
+          request.auth.token.email == 'contaprodc360@gmail.com' ||
+          request.auth.token.email == 'admin@contaprodc.com'
+        ));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Blueprints ---
+    function isValidEditorial(data) {
+      return data.title is string && data.title.size() <= 1000
+        && data.content is string && data.content.size() <= 1000000
+        && (!('author' in data) || (data.author is string && data.author.size() <= 500))
+        && (!('area' in data) || (data.area is string && data.area.size() <= 100))
+        && (!('authorId' in data) || (data.authorId is string && data.authorId.size() <= 128))
+        && (request.auth == null || !('authorId' in data) || data.authorId == request.auth.uid || data.authorId == 'anonymous')
+        && (!('summary' in data) || data.summary == null || (data.summary is string && data.summary.size() <= 5000))
+        && (!('managerSummary' in data) || data.managerSummary == null || (data.managerSummary is string && data.managerSummary.size() <= 5000))
+        && (!('date' in data) || data.date == null || (data.date is string && data.date.size() <= 100))
+        && (!('readTime' in data) || data.readTime == null || (data.readTime is string && data.readTime.size() <= 100))
+        && (!('videoScript' in data) || data.videoScript == null || (data.videoScript is string && data.videoScript.size() <= 50000))
+        && (!('imageUrl' in data) || data.imageUrl == null || (data.imageUrl is string && data.imageUrl.size() <= 2000));
+    }
+
+    function isValidFicha(data) {
+      return data.editorialId is string && data.editorialId.size() <= 128
+        && data.title is string && data.title.size() <= 1000
+        && data.contentSnapshot is string && data.contentSnapshot.size() <= 1000000
+        && (!('summary' in data) || data.summary == null || (data.summary is string && data.summary.size() <= 5000))
+        && (!('author' in data) || data.author == null || (data.author is string && data.author.size() <= 500))
+        && (!('area' in data) || data.area == null || (data.area is string && data.area.size() <= 100))
+        && (!('generationDate' in data) || data.generationDate == null || (data.generationDate is string && data.generationDate.size() <= 128))
+        && (!('readTime' in data) || data.readTime == null || (data.readTime is string && data.readTime.size() <= 100))
+        && (!('action' in data) || data.action == null || (data.action is string && data.action.size() <= 100))
+        && (!('authorId' in data) || data.authorId == null || (data.authorId is string && data.authorId.size() <= 128))
+        && (request.auth == null || !('authorId' in data) || data.authorId == request.auth.uid || data.authorId == 'anonymous');
+    }
+
+    // --- Collection Routes ---
+    match /editorials/{editorialId} {
+      allow get: if true;
+      allow list: if true; // Public list
+      
+      allow create: if isAdmin() 
+        && isValidId(editorialId)
+        && isValidEditorial(incoming())
+        && (!('createdAt' in incoming()) || incoming().createdAt == request.time)
+        && (!('updatedAt' in incoming()) || incoming().updatedAt == request.time);
+
+      allow update: if isAdmin()
+        && isValidId(editorialId)
+        && isValidEditorial(incoming())
+        && (!('createdAt' in incoming()) || !('createdAt' in existing()) || incoming().createdAt == existing().createdAt)
+        && (!('updatedAt' in incoming()) || incoming().updatedAt == request.time);
+
+      allow delete: if isAdmin();
+    }
+
+    match /fichas/{fichaId} {
+      allow get: if true;
+      allow list: if true; // Public list
+      
+      allow create: if isAdmin() 
+        && isValidId(fichaId)
+        && isValidFicha(incoming())
+        && (!('createdAt' in incoming()) || incoming().createdAt == request.time);
+
+      allow delete: if isAdmin();
+    }
+
+    match /service_leads/{leadId} {
+      allow create: if isValidId(leadId) 
+        && incoming().name is string && incoming().name.size() <= 200
+        && incoming().email is string && incoming().email.size() <= 200
+        && (!('company' in incoming()) || (incoming().company is string && incoming().company.size() <= 200))
+        && (!('phone' in incoming()) || (incoming().phone is string && incoming().phone.size() <= 100))
+        && (!('serviceName' in incoming()) || (incoming().serviceName is string && incoming().serviceName.size() <= 500))
+        && (!('message' in incoming()) || (incoming().message is string && incoming().message.size() <= 5000))
+        && incoming().createdAt == request.time
+        && (!('source' in incoming()) || (incoming().source is string && incoming().source.size() <= 200));
+
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

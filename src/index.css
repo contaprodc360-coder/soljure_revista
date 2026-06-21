@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Corporate Palette */
+  --color-brand-navy: #0F172A;      /* Slate 900 - Deep, authoritative for headings */
+  --color-brand-corporate: #1E40AF; /* Blue 800 - Secondary corporate blue */
+  --color-brand-slate: #475569;     /* Slate 600 - Reading text / Metadata */
+  --color-brand-accent: #B59441;    /* Refined Metallic Gold */
+  --color-brand-bg: #F8FAFC;        /* Professional Slate White */
+  --color-brand-border: #E2E8F0;
+  --color-brand-ivory: #FDFCFB;
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+.performance-layer {
+  contain: layout style paint;
+}
+
+@layer base {
+  body {
+    @apply bg-brand-bg text-brand-navy font-sans antialiased;
+    background-image: 
+      radial-gradient(at 0% 0%, hsla(210, 40%, 96%, 1) 0, transparent 50%), 
+      radial-gradient(at 50% 0%, hsla(220, 30%, 94%, 1) 0, transparent 50%);
+    background-attachment: fixed;
+    scroll-behavior: smooth;
+  }
+
+  h1, h2, h3, .editorial-text {
+    @apply font-serif font-bold;
+  }
+}
+
+.magazine-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2.5rem;
+}
+
+.editorial-card {
+  @apply bg-white border border-brand-border p-8 rounded-sm shadow-sm transition-all duration-500 relative overflow-hidden;
+}
+
+.editorial-card::before {
+  content: '';
+  @apply absolute top-0 left-0 w-1 h-full bg-brand-navy opacity-0 transition-opacity duration-300;
+}
+
+.editorial-card:hover {
+  @apply shadow-xl border-brand-navy/10 transform -translate-y-1;
+}
+
+.editorial-card:hover::before {
+  @apply opacity-100;
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-xl border-b border-brand-border sticky top-0 z-50;
+}
+
+.magazine-container {
+  @apply bg-brand-navy p-12 min-h-screen text-brand-ivory flex items-center justify-center;
+  background: radial-gradient(circle at center, #006eb5 0%, #004e82 100%);
+}
+
+.magazine-page {
+  @apply bg-white text-brand-navy shadow-none relative mx-auto min-h-screen;
+  width: 100%;
+  max-width: none;
+}
+
+.btn-secondary {
+  @apply border border-brand-border px-6 py-2.5 rounded-sm hover:bg-brand-bg transition-all duration-300 font-medium tracking-wide flex items-center gap-2 text-brand-navy;
+}
+
+.social-story-container {
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  max-width: 400px;
+}
+
+.gradient-dark {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.95) 100%);
+}
+
+.btn-primary {
+  @apply bg-brand-navy text-white px-6 py-2.5 rounded-sm hover:bg-brand-corporate transition-all duration-300 font-medium tracking-wide flex items-center gap-2;
+}
+
+.markdown-body h1 { @apply text-5xl font-serif mb-8 text-brand-navy border-b-2 border-brand-accent/20 pb-4 scroll-mt-24 tracking-tight leading-tight; }
+.markdown-body h2 { @apply text-3xl font-serif mb-8 mt-16 text-brand-navy scroll-mt-24 tracking-tight border-b-2 border-brand-accent/30 pb-2 leading-snug; }
+.markdown-body h3 { @apply text-2xl font-serif mb-4 mt-10 text-brand-navy scroll-mt-24 leading-snug; }
+.markdown-body p { @apply mb-8 leading-relaxed text-xl text-brand-navy/90 font-serif; }
+
+.markdown-body table { @apply w-full border-collapse bg-white text-left; }
+.markdown-body thead { @apply border-b-4 border-brand-accent bg-brand-navy; }
+.markdown-body .table-wrapper { @apply w-full overflow-x-auto mb-12 rounded-lg border-2 border-brand-navy/10 shadow-lg; }
+.markdown-body th { @apply text-white text-[10px] uppercase tracking-[0.2em] p-4 font-black border-r border-white/10 last:border-r-0; min-width: 120px; }
+.markdown-body td { @apply p-4 text-sm border-b border-brand-border text-brand-navy font-sans last:border-r-0 leading-tight; }
+.markdown-body tr:last-child td { @apply border-b-0; }
+.markdown-body tr:nth-child(even) { @apply bg-[#F8FAFC]; }
+.markdown-body tr:hover td { @apply bg-brand-accent/5 transition-colors; }
+
+/* Images */
+.markdown-body img { @apply w-full rounded-sm shadow-xl mb-6 border border-brand-border hover:shadow-2xl transition-all duration-700; }
+.markdown-body em { @apply block text-center text-sm text-brand-slate mt-[-1rem] mb-10 font-sans italic opacity-80; }
+
+/* Others */
+.markdown-body ul { @apply list-disc ml-8 mb-10 space-y-4 text-brand-navy/90 font-serif text-lg; }
+.markdown-body li { @apply pl-3; }
+.markdown-body blockquote { @apply border-l-8 border-brand-accent bg-brand-accent/5 p-10 italic mb-12 mx-0 rounded-r-sm text-2xl text-brand-navy/80 leading-normal font-serif; }
+.markdown-body code { @apply bg-brand-bg text-brand-corporate px-2 py-0.5 rounded font-mono text-sm font-semibold; }
+.markdown-body pre { @apply bg-brand-navy text-brand-ivory p-10 rounded-sm mb-12 overflow-x-auto font-mono text-sm leading-relaxed shadow-2xl border-l-[12px] border-brand-accent/50; }

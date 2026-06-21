@@ -1,0 +1,75 @@
+{
+  "entities": {
+    "Editorial": {
+      "title": "Editorial",
+      "description": "Un artículo editorial de la revista CONTAPRO DC",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "managerSummary": { "type": "string" },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "date": { "type": "string" },
+        "area": { "type": "string" },
+        "readTime": { "type": "string" },
+        "authorId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "content", "author", "area"]
+    },
+    "Ficha": {
+      "title": "Ficha",
+      "description": "Ficha histórica e inmutable de generación del artículo en formato libro",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "editorialId": { "type": "string" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "contentSnapshot": { "type": "string" },
+        "area": { "type": "string" },
+        "author": { "type": "string" },
+        "generationDate": { "type": "string" },
+        "readTime": { "type": "string" },
+        "action": { "type": "string" },
+        "authorId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["editorialId", "title", "contentSnapshot", "area", "generationDate", "authorId"]
+    },
+    "ServiceLead": {
+      "title": "ServiceLead",
+      "description": "Lead de contacto enviado por clientes para servicios profesionales",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "company": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "serviceName": { "type": "string" },
+        "message": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "source": { "type": "string" }
+      },
+      "required": ["name", "email"]
+    }
+  },
+  "firestore": {
+    "/editorials/{editorialId}": {
+      "schema": "Editorial",
+      "description": "Colección global de editoriales"
+    },
+    "/fichas/{fichaId}": {
+      "schema": "Ficha",
+      "description": "Fichas históricas de generación de artículos agrupados cronológicamente"
+    },
+    "/service_leads/{leadId}": {
+      "schema": "ServiceLead",
+      "description": "Leads de contacto técnico/jurídico enviados por clientes"
+    }
+  }
+}

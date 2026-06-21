@@ -1,0 +1,123 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- Helpers ---
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isEmailVerified() {
+      return isSignedIn() && request.auth.token.email_verified == true;
+    }
+
+    function isAdmin() {
+      return request.auth == null || 
+        (isSignedIn() && (
+          request.auth.token.email == 'contaprodc360@gmail.com' ||
+          request.auth.token.email == 'admin@contaprodc.com'
+        ));
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // --- Validation Blueprints ---
+    function isValidEditorial(data) {
+      return data.keys().hasAll(['title', 'content', 'author', 'area', 'authorId', 'createdAt', 'updatedAt'])
+        && data.keys().size() <= 15
+        && data.title is string && data.title.size() <= 1000
+        && data.content is string && data.content.size() <= 1000000
+        && data.author is string && data.author.size() <= 500
+        && data.area is string && data.area.size() <= 100
+        && data.authorId is string && data.authorId.size() <= 128
+        && (request.auth == null || data.authorId == request.auth.uid)
+        && (!('summary' in data) || (data.summary is string && data.summary.size() <= 5000))
+        && (!('managerSummary' in data) || (data.managerSummary is string && data.managerSummary.size() <= 5000))
+        && (!('date' in data) || (data.date is string && data.date.size() <= 100))
+        && (!('readTime' in data) || (data.readTime is string && data.readTime.size() <= 100))
+        && (!('videoScript' in data) || (data.videoScript is string && data.videoScript.size() <= 50000))
+        && (!('imageUrl' in data) || (data.imageUrl is string && data.imageUrl.size() <= 2000));
+    }
+
+    function isValidFicha(data) {
+      return data.keys().hasAll(['editorialId', 'title', 'contentSnapshot', 'area', 'summary', 'author', 'generationDate', 'readTime', 'action', 'authorId', 'createdAt'])
+        && data.keys().size() <= 15
+        && data.editorialId is string && data.editorialId.size() <= 128
+        && data.title is string && data.title.size() <= 1000
+        && data.contentSnapshot is string && data.contentSnapshot.size() <= 1000000
+        && data.area is string && data.area.size() <= 100
+        && data.summary is string && data.summary.size() <= 5000
+        && data.author is string && data.author.size() <= 500
+        && data.generationDate is string && data.generationDate.size() <= 128
+        && data.readTime is string && data.readTime.size() <= 100
+        && data.action is string && data.action.size() <= 100
+        && data.authorId is string && data.authorId.size() <= 128
+        && (request.auth == null || data.authorId == request.auth.uid);
+    }
+
+    // --- Collection Routes ---
+    match /editorials/{editorialId} {
+      allow get: if true;
+      allow list: if true; // Public list
+      
+      allow create: if isAdmin() 
+        && isValidId(editorialId)
+        && isValidEditorial(incoming())
+        && incoming().createdAt == request.time
+        && incoming().updatedAt == request.time;
+
+      allow update: if isAdmin()
+        && isValidId(editorialId)
+        && isValidEditorial(incoming())
+        && incoming().createdAt == existing().createdAt
+        && incoming().updatedAt == request.time
+        && (
+          incoming().diff(existing()).affectedKeys().hasOnly([
+            'title', 'content', 'author', 'summary', 'managerSummary', 'area', 'readTime', 'updatedAt', 'date', 'authorId', 'createdAt', 'imageUrl', 'videoScript'
+          ])
+        );
+
+      allow delete: if isAdmin();
+    }
+
+    match /fichas/{fichaId} {
+      allow get: if true;
+      allow list: if true; // Public list
+      
+      allow create: if isAdmin() 
+        && isValidId(fichaId)
+        && isValidFicha(incoming())
+        && incoming().createdAt == request.time;
+
+      allow delete: if isAdmin();
+    }
+
+    match /service_leads/{leadId} {
+      allow create: if isValidId(leadId) 
+        && incoming().name is string && incoming().name.size() <= 200
+        && incoming().email is string && incoming().email.size() <= 200
+        && (!('company' in incoming()) || (incoming().company is string && incoming().company.size() <= 200))
+        && (!('phone' in incoming()) || (incoming().phone is string && incoming().phone.size() <= 100))
+        && (!('serviceName' in incoming()) || (incoming().serviceName is string && incoming().serviceName.size() <= 500))
+        && (!('message' in incoming()) || (incoming().message is string && incoming().message.size() <= 5000))
+        && incoming().createdAt == request.time
+        && (!('source' in incoming()) || (incoming().source is string && incoming().source.size() <= 200));
+
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}

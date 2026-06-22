@@ -306,8 +306,8 @@ export default function BookCompendium({
                 Análisis Crítico de la Normativa Contable, Tributaria y Procedimientos de Auditoría Integral en el Sector Corporativo Ecuatoriano
               </p>
               <div class="cover-author-box">
-                <div class="cover-author">ING. COM. SEGUNDO CUENCA C.</div>
-                <div class="cover-qualification">Magíster en Auditoría Integral — Autor y Actor Principal // 2026</div>
+                <div class="cover-author">Abg. Segundo Cuenca</div>
+                <div class="cover-qualification">DIRECTOR GENERAL SOLJURE // AUTOR PRINCIPAL 2026</div>
               </div>
             </div>
             <div class="cover-footer">SOLJURE ECUADOR // COOPERACIÓN JURÍDICA 2026</div>
@@ -1187,7 +1187,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                       </div>
                       <div className="shrink-0 text-center md:text-right">
                         <span className="text-[10px] font-black uppercase tracking-widest text-[#B59441] block">DIRECTOR Y AUTOR PRINCIPAL</span>
-                        <span className="text-xs text-white font-bold tracking-[0.1em] uppercase block">ING. COM. SEGUNDO CUENCA</span>
+                        <span className="text-xs text-white font-bold tracking-[0.1em] uppercase block">Abg. Segundo Cuenca</span>
                         <span className="text-[9px] text-brand-accent font-black block tracking-wider mt-0.5">AÑO EDITORIAL 2026</span>
                       </div>
                     </div>
@@ -1291,8 +1291,8 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                     <p>Cada sección del presente volumen es el resultado de una minuciosa recopilación dogmática y jurisprudencial estructurada con herramientas de inteligencia jurídica avanzada, logrando una síntesis inmutable de las bases procesales aplicables en territorio ecuatoriano.</p>
                     
                     <div className="pt-20 text-right space-y-1">
-                      <p className="font-serif font-black text-brand-navy uppercase tracking-wider">Dr. Segundo Cuenca C.</p>
-                      <p className="text-xs text-brand-slate font-medium uppercase font-mono">Socio Fundador & Magistrado Consultor de Litigio</p>
+                      <p className="font-serif font-black text-brand-navy uppercase tracking-wider">Abg. Segundo Cuenca</p>
+                      <p className="text-xs text-brand-slate font-medium uppercase font-mono">DIRECTOR GENERAL  SOLJURE</p>
                       <p className="text-[10px] text-[#B59441] font-black uppercase tracking-widest mt-1">DIRECCIÓN GENERAL SOLJURE ECUADOR</p>
                     </div>
                   </div>
@@ -1808,7 +1808,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                 <ul className="list-disc list-inside space-y-1 text-xs text-brand-slate">
                   <li><strong>Capítulos:</strong> {bookEditorials.length} artículos unificados</li>
                   <li><strong>Área del Historial:</strong> Práctica Contable</li>
-                  <li><strong>Autor Principal:</strong> ING. COM. SEGUNDO CUENCA C</li>
+                  <li><strong>Autor Principal:</strong> Abg. Segundo Cuenca; DIRECTOR GENERAL SOLJURE</li>
                 </ul>
               </div>
             </div>

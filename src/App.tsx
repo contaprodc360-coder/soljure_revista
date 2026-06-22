@@ -520,7 +520,7 @@ export default function App() {
           summary: ed.summary || 'Análisis técnico regulatorio.',
           contentSnapshot: ed.content || '',
           area: ed.area,
-          author: ed.author || 'ING. COM. SEGUNDO CUENCA C',
+          author: ed.author || 'Abg. Segundo Cuenca; DIRECTOR GENERAL SOLJURE',
           generationDate: parseEditorialDateToISO(ed.date),
           readTime: ed.readTime || '5 min',
           action: 'Publicación Original',
@@ -730,7 +730,7 @@ export default function App() {
           summary: generated.summary,
           managerSummary: generated.managerSummary || '',
           content: cleanEditorialContent(generated.content),
-          author: "ING. COM. SEGUNDO CUENCA C, MAGISTER EN AUDITORIA INTEGRAL",
+          author: "Abg. Segundo Cuenca; DIRECTOR GENERAL SOLJURE",
           date: new Date().toLocaleDateString('es-EC', { day: 'numeric', month: 'short', year: 'numeric' }),
           area: cat,
           readTime: `${Math.ceil(generated.content.split(' ').length / 200)} min`
@@ -1990,8 +1990,8 @@ function MagazineView({
                   <div className="flex flex-col">
                     <span className="text-[10px] uppercase text-brand-slate font-black tracking-[0.3em] opacity-60">Analista</span>
                     <span className="text-sm font-bold text-brand-navy group-hover:text-brand-accent transition-colors">
-                      {(ed.author.includes("Rosales") || ed.author.includes("Francisco")) 
-                        ? "ING. COM. SEGUNDO CUENCA C, MAGISTER EN AUDITORIA INTEGRAL" 
+                      {(ed.author.includes("Rosales") || ed.author.includes("Francisco") || ed.author.includes("SEGUNDO CUENCA") || ed.author.includes("Segundo Cuenca") || !ed.author) 
+                        ? "Abg. Segundo Cuenca; DIRECTOR GENERAL SOLJURE" 
                         : ed.author}
                     </span>
                   </div>
@@ -5732,9 +5732,11 @@ function EditorialViewer({
       
       const areaText = `ÁREA: ${editorial.area.toUpperCase()}`;
       const dateText = `FECHA: ${editorial.date || ''}`;
-      const displayAuthor = (editorial.author.toUpperCase().includes("ROSALES") || editorial.author.toUpperCase().includes("FRANCISCO") || editorial.author.toUpperCase().includes("SEGUNDO"))
+      const displayAuthor = (editorial.author.toUpperCase().includes("ROSALES") || editorial.author.toUpperCase().includes("FRANCISCO"))
         ? "AB. ESTEBAN ORDOÑEZ M, MAGISTER EN DERECHO CONSTITUCIONAL Y DEFENSA PROCESAL"
-        : editorial.author.toUpperCase();
+        : (editorial.author.toUpperCase().includes("SEGUNDO") || editorial.author.toUpperCase().includes("CUENCA"))
+          ? "ABG. SEGUNDO CUENCA; DIRECTOR GENERAL SOLJURE"
+          : editorial.author.toUpperCase();
       const authorText = `AUTOR: ${displayAuthor}`;
       
       // Line 1: Area & Date

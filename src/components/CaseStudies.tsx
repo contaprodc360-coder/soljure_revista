@@ -819,8 +819,8 @@ export function CaseStudies() {
                   </p>
                   <div className="flex justify-between items-end pt-4 font-sans text-[8px] text-white/50">
                     <div>
-                      <span className="block italic">Segundo Cuenca C., Msc.</span>
-                      <span className="block text-[7px] tracking-widest font-bold">DIRECTOR JURÍDICO</span>
+                      <span className="block italic">Abg. Segundo Cuenca</span>
+                      <span className="block text-[7px] tracking-widest font-bold">DIRECTOR GENERAL  SOLJURE</span>
                     </div>
                     <div className="text-right">
                       <span className="block font-bold text-[#B59441]">VERIFICACIÓN SATJE</span>

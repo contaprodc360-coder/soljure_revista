@@ -26,7 +26,7 @@ El presente artículo científico analiza los requisitos de procedibilidad y el 
 Casación, Inadmisibilidad, COGEP, Procedimiento Civil, Fundamentación Autónoma, Debido Proceso, Ecuador, Rigor Jurídico
 
 ## Abstract
-This scientific article analyzes the procedibility requirements and the adjective rigor demanded by the Civil Chamber of the National Court of Justice regarding the admission of extraordinary appeals of cassation under the General Organic Code of Processes (COGEP) in Ecuador. It examines the scope of cassation and the typical grounds for preliminary rejection linked to the lack of substantiation and autonomous reasoning. Through a dogmatic analysis of Azerbaijani and regional trends, key argumentative standards are defined.
+This scientific article analyzes the procedibility requirements and the adjective rigor demanded by the Civil Chamber of the National Court of Justice regarding the admission of extraordinary appeals of cassation under the General Organic Code of Processes (COGEP) in Ecuador. It examines the scope of cassation and the typical grounds for preliminary rejection linked to the lack of substantiation and autonomous reasoning. Through a dogmatic analysis of Ecuadorian legal jurisprudence, key argumentative standards are defined.
 
 ## Keywords
 Cassation, Inadmissibility, COGEP, Civil Procedure, Autonomous Substantiation, Due Process, Ecuador, Legal Rigor
@@ -196,7 +196,7 @@ La discusión se centra en la aplicación de la carga dinámica de la prueba en 
 ## REFERENCIAS
 * Carrión Eguiguren, E. (2020). *Curso de Derecho del Trabajo Ecuatoriano*. Cep-Corporación de Estudios y Publicaciones.
 * Código del Trabajo del Ecuador. (2025). *Codificación de Leyes Especiales*. Registro Oficial Suplemento 512.
-* Corte Nacional de Justicia. (2023). *Fallo sobre despido ineficaz y prueba dinámica en materia laboral*. Sentencia No. 222-2023-CNJ.`,
+* Corte Constitucional del Ecuador. (2021). *Estándares constitucionales sobre despido ineficaz y estabilidad reforzada*. Sentencia No. 115-20-IS-CC.`,
     author: "Abg. de SOLJURE Especialidad Laboral",
     date: "18 June 2026",
     area: ExpertiseArea.LABORAL,
@@ -286,7 +286,7 @@ Se debate en el foro el rigor exegético del test de motivación y si la resoluc
 ## REFERENCIAS
 * Salgado Pesantes, H. (2019). *Manual de Derecho Constitucional Ecuatoriano*. Universidad Andina Simón Bolívar.
 * Ley Orgánica de Garantías Jurisdiccionales y Control Constitucional. (2015). *Registro Oficial Suplemento 52*.
-* Corte Constitucional del Ecuador. (2022). *Sentencia resolutiva sobre test de motivación*. Sentencia No. 1158-17-EP/22.`,
+* Corte Constitucional del Ecuador. (2021). *Sentencia hito sobre el nuevo test de motivación*. Sentencia No. 1158-17-EP/21.`,
     author: "Departamento Constitucional de SOLJURE",
     date: "17 June 2026",
     area: ExpertiseArea.CONSTITUCIONAL,
@@ -464,7 +464,7 @@ Se confrontan las tesis sobre la necesidad o no de requerir judicialmente la cer
 
 ## REFERENCIAS
 * Código Orgánico Administrativo (COA) del Ecuador. (2024). *Manual de Casos Prácticos CEP*. Registro Oficial Suplemento 31.
-* Corte Nacional de Justicia de Ecuador. (2023). *Sentencia obligatoria sobre alcance notarial del silencio administrativo*. Sentencia No. 05-2023-CNJ.
+* Corte Nacional de Justicia del Ecuador. (2021). *Resolución vinculante sobre la ejecución del silencio administrativo positivo bajo el COA*. Resolución No. 11-2021.
 * Constitución de la República del Ecuador. (2008). *Registro Oficial No. 449*.`,
     author: "Especialistas en Derecho Administrativo SOLJURE",
     date: "15 June 2026",
@@ -555,7 +555,7 @@ Se debate en la dogmática la colisión entre el interés de persecución penal 
 ## REFERENCIAS
 * Código Orgánico Integral Penal del Ecuador (COIP). (2025). *Guía de Procedimientos Penales CEP*. Registro Oficial Suplemento 180.
 * Zavala Baquerizo, J. (2016). *Tratado de Enjuiciamiento Penal y Garantías Procesales*. Editorial Jurídica del Ecuador.
-* Corte Nacional de Justicia de Ecuador. (2023). *Resolución vinculante sobre peligro de fuga*. Resolución No. 14-2023.`,
+* Corte Nacional de Justicia de del Ecuador. (2020). *Resolución de observancia obligatoria sobre el carácter excepcional de la prisión preventiva*. Resolución No. 12-2020.`,
     author: "Derecho Penal de SOLJURE",
     date: "14 June 2026",
     area: ExpertiseArea.PENAL,

@@ -171,29 +171,28 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       alignment: AlignmentType.CENTER,
       spacing: { before: 800, after: 200 },
       children: [
-        new TextRun({ text: "CONTAPRO ", bold: true, size: 28, color: "121D33" }),
-        new TextRun({ text: "DC", bold: true, size: 28, color: "B59441" }),
+        new TextRun({ text: "SOLJURE", bold: true, size: 28, color: "121D33" }),
       ]
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { after: 1200 },
       children: [
-        new TextRun({ text: "CENTRO DE INVESTIGACIÓN DOCTRINARIA", color: "B59441", bold: true, size: 18 })
+        new TextRun({ text: "PORTAL EDITORIAL DE INVESTIGACIÓN JURÍDICA", color: "B59441", bold: true, size: 18 })
       ]
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { after: 300 },
       children: [
-        new TextRun({ text: "TRATADO PRÁCTICO DE INTELIGENCIA NORMATIVA", bold: true, size: 48, color: "121D33", font: "Georgia" })
+        new TextRun({ text: "TRATADO PRÁCTICO DE INTELIGENCIA JURÍDICA", bold: true, size: 48, color: "121D33", font: "Georgia" })
       ]
     }),
     new Paragraph({
       alignment: AlignmentType.CENTER,
       spacing: { after: 1400 },
       children: [
-        new TextRun({ text: "Análisis Crítico de la Normativa Fiscal, Contable y de Procesos de Auditoría Integral en el Sector Corporativo", color: "475569", italics: true, size: 22 })
+        new TextRun({ text: "Estudio Analítico-Crítico de la Jurisprudencia, Debido Proceso y Procedimientos de Litigio en Ecuador", color: "475569", italics: true, size: 22 })
       ]
     }),
     new Paragraph({
@@ -207,7 +206,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       alignment: AlignmentType.CENTER,
       spacing: { after: 300 },
       children: [
-        new TextRun({ text: "Ing. Com. Segundo Cuenca C., Msc.", bold: true, size: 34, color: "121D33" })
+        new TextRun({ text: "Ab. Esteban Ordoñez M., Magíster", bold: true, size: 34, color: "121D33" })
       ]
     }),
     new Paragraph({
@@ -229,7 +228,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       spacing: { after: 400 },
       pageBreakBefore: false,
       children: [
-        new TextRun({ text: "© Firma de Auditores CONTAPRO DC Ecuador", color: "121D33", bold: true, size: 18 })
+        new TextRun({ text: "© Firma de Abogados SOLJURE Ecuador", color: "121D33", bold: true, size: 18 })
       ]
     })
   );
@@ -269,12 +268,12 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       alignment: AlignmentType.JUSTIFIED,
     }),
     new Paragraph({
-      text: "Este Tratado de Inteligencia Normativa recopila el esfuerzo editorial continuo de CONTAPRO DC, entregando análisis doctrinarios de las variables tributarias locales y regulaciones de NIIF globales. Representa una guía metódica diseñada por auditores, dirigida a estructurar la toma de decisiones gerenciales frente al constante dinamismo de entes reguladores.",
+      text: "Este Tratado de Inteligencia Normativa recopila el esfuerzo editorial continuo de SOLJURE, entregando análisis doctrinarios de las variables tributarias y legales locales. Representa una guía metódica diseñada por abogados expertos, dirigida a estructurar la toma de decisiones corporativas frente al constante dinamismo de entes reguladores.",
       spacing: { after: 400 },
       alignment: AlignmentType.JUSTIFIED,
     }),
     new Paragraph({
-      text: "— Comité de Dirección Científica e Inteligencia Normativa CONTAPRO",
+      text: "— Comité de Dirección Científica e Inteligencia Normativa SOLJURE",
       alignment: AlignmentType.RIGHT,
       spacing: { after: 200 },
     })
@@ -294,7 +293,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       alignment: AlignmentType.JUSTIFIED,
     }),
     new Paragraph({
-      text: "El objetivo central de este texto unificado radica en desentrañar los aspectos más críticos de la normativa fiscal, la aplicación de controles para impuestos diferidos según NIIF para PYMES, las complejidades operativas asociadas a la determinación del impuesto mínimo, y la adecuada auditoría preventiva ante auditorías del SRI. Esperamos que este instrumento metodológico consolide la cultura de la legalidad de la firma dirigida por el Ing. Com. Segundo Cuenca C., Msc.",
+      text: "El objetivo central de este texto unificado radica en desentrañar los aspectos más críticos de la normativa fiscal, la aplicación de controles de debida diligencia de procesos corporativos, las complejidades operativas asociadas, y la adecuada defensa técnica ante auditorías del SRI. Esperamos que este instrumento metodológico consolide la cultura de la legalidad de la firma dirigida por el Ab. Esteban Ordoñez M., Magíster.",
       spacing: { after: 200 },
       alignment: AlignmentType.JUSTIFIED,
     })
@@ -405,7 +404,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
                          "(=) Base Imponible General para Régimen General del Impuesto a la Renta\n" +
                          "(x) Tarifa impositiva general (25.00 % estándar corporativo en vigencia)", spacing: { after: 250 } }),
 
-    new Paragraph({ text: "Anexo C: Gráfico del Índice de Eficacia Normativa CONTAPRO 2026", heading: HeadingLevel.HEADING_3, spacing: { before: 200, after: 150 } }),
+    new Paragraph({ text: "Anexo C: Gráfico del Índice de Eficacia Normativa SOLJURE 2026", heading: HeadingLevel.HEADING_3, spacing: { before: 200, after: 150 } }),
     buildWordTable([
       ["ÁREA NORMATIVA", "ÍNDICE COBERTURA CIENTÍFICA", "ESTADO OPERACIÓN"],
       ["Área I: Normativa Tributaria local (SRI)", "████████████████████ 96%", "Excelente / Conforme"],
@@ -444,7 +443,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
               new Paragraph({
                 children: [
                   new TextRun({ text: "TRATADO DE INTELIGENCIA NORMATIVA ", bold: true, color: "121D33", size: 15 }),
-                  new TextRun({ text: "CONTAPRO DC", bold: true, color: "B59441", size: 15 }),
+                  new TextRun({ text: "SOLJURE", bold: true, color: "B59441", size: 15 }),
                 ],
                 border: { bottom: { color: "B59441", space: 1, style: "single", size: 6 } },
                 spacing: { after: 200 }
@@ -462,7 +461,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
                   new TextRun({ children: [PageNumber.CURRENT], size: 17 }),
                   new TextRun({ text: " de ", size: 17 }),
                   new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 17 }),
-                  new TextRun({ text: " | Compendío Científico — Director Segundo Cuenca 2026", size: 17, color: "475569" }),
+                  new TextRun({ text: " | Compendio Científico — Director Ab. Esteban Ordoñez M. 2026", size: 17, color: "475569" }),
                 ],
               }),
             ],
@@ -474,7 +473,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
   });
 
   const blob = await Packer.toBlob(docData);
-  saveAs(blob, `TRATADO_CONTAPRO_INTEGRAL_${new Date().toISOString().split('T')[0]}.docx`);
+  saveAs(blob, `TRATADO_SOLJURE_INTEGRAL_${new Date().toISOString().split('T')[0]}.docx`);
 };
 
 /* ==========================================================================
@@ -491,8 +490,8 @@ export const exportBookToPPT = async (editorials: Editorial[]) => {
 
   const addStandardShell = (slide: any, title?: string) => {
     slide.addShape(pres.ShapeType.rect, { x: 0, y: 0, w: '100%', h: 0.05, fill: { color: BRAND_ACCENT } });
-    slide.addText("CONTAPRO DC", { x: 0.5, y: 0.2, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_NAVY, bold: true });
-    slide.addText("TRATADO DE INTELIGENCIA NORMATIVA", { x: '40%', y: 0.2, w: 4, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'center', charSpacing: 2 });
+    slide.addText("SOLJURE", { x: 0.5, y: 0.2, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_NAVY, bold: true });
+    slide.addText("TRATADO DE INTELIGENCIA JURÍDICA", { x: '40%', y: 0.2, w: 4, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'center', charSpacing: 2 });
     slide.addText("© 2026", { x: 8, y: 0.2, w: 1.5, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'right' });
     
     if (title) {
@@ -512,20 +511,20 @@ export const exportBookToPPT = async (editorials: Editorial[]) => {
 
   // White and Gold Emblem Logo:
   slide.addShape(pres.ShapeType.rect, { x: 0.5, y: 0.5, w: 0.5, h: 0.5, fill: { color: BRAND_WHITE } });
-  slide.addText("C", { x: 0.5, y: 0.5, w: 0.5, h: 0.5, fontSize: 18, fontFace: 'Georgia', color: BRAND_NAVY, bold: true, align: 'center', valign: 'middle' });
+  slide.addText("S", { x: 0.5, y: 0.5, w: 0.5, h: 0.5, fontSize: 18, fontFace: 'Georgia', color: BRAND_NAVY, bold: true, align: 'center', valign: 'middle' });
   slide.addShape(pres.ShapeType.rect, { x: 0.75, y: 0.75, w: 0.35, h: 0.35, fill: { color: BRAND_ACCENT } });
-  slide.addText("D", { x: 0.75, y: 0.75, w: 0.35, h: 0.35, fontSize: 12, fontFace: 'Georgia', color: BRAND_WHITE, bold: true, align: 'center', valign: 'middle' });
+  slide.addText("J", { x: 0.75, y: 0.75, w: 0.35, h: 0.35, fontSize: 12, fontFace: 'Georgia', color: BRAND_WHITE, bold: true, align: 'center', valign: 'middle' });
 
-  slide.addText("CENTRO DE INVESTIGACIÓN DOCTRINARIA  |  CONTAPRO DC", { x: 1.3, y: 0.6, w: 5, fontSize: 9, color: BRAND_ACCENT, bold: true, charSpacing: 2 });
+  slide.addText("CENTRO DE INVESTIGACIÓN DOCTRINARIA  |  SOLJURE", { x: 1.3, y: 0.6, w: 5, fontSize: 9, color: BRAND_ACCENT, bold: true, charSpacing: 2 });
   slide.addText("TRATADO PRÁCTICO DE", { x: 0.5, y: 1.5, w: '65%', fontSize: 22, color: BRAND_WHITE, bold: true, fontFace: 'Georgia' });
-  slide.addText("INTELIGENCIA NORMATIVA", { x: 0.5, y: 2.0, w: '65%', fontSize: 34, color: BRAND_ACCENT, bold: true, fontFace: 'Georgia' });
-  slide.addText("Análisis Crítico de la Normativa Fiscal, Contable y de Procesos de Auditoría", { x: 0.5, y: 2.9, w: '60%', fontSize: 12, color: 'CBD5E1', fontFace: 'Arial', italic: true });
+  slide.addText("INTELIGENCIA JURÍDICA", { x: 0.5, y: 2.0, w: '65%', fontSize: 34, color: BRAND_ACCENT, bold: true, fontFace: 'Georgia' });
+  slide.addText("Análisis Crítico de la Jurisprudencia, Debido Proceso y Litigio en Ecuador", { x: 0.5, y: 2.9, w: '60%', fontSize: 12, color: 'CBD5E1', fontFace: 'Arial', italic: true });
 
-  // Main Leader Panel (Segundo Cuenca)
+  // Main Leader Panel (Segundo Cuenca to Ab. Esteban Ordoñez M.)
   slide.addShape(pres.ShapeType.rect, { x: 0.5, y: 3.5, w: 5.5, h: 1.1, fill: { color: '1C2B43' }, line: { color: BRAND_ACCENT, width: 1 } });
   slide.addShape(pres.ShapeType.rect, { x: 0.5, y: 3.5, w: 0.1, h: 1.1, fill: { color: BRAND_ACCENT } });
   slide.addText("INVESTIGADOR PRINCIPAL Y DIRECTOR CIENTÍFICO", { x: 0.8, y: 3.6, w: 5, fontSize: 8, color: BRAND_ACCENT, bold: true });
-  slide.addText("Ing. Com. Segundo Cuenca C., Msc.", { x: 0.8, y: 3.8, w: 5, fontSize: 15, color: BRAND_WHITE, bold: true, fontFace: 'Georgia' });
+  slide.addText("Ab. Esteban Ordoñez M., Magíster", { x: 0.8, y: 3.8, w: 5, fontSize: 15, color: BRAND_WHITE, bold: true, fontFace: 'Georgia' });
   slide.addText("Base Doctrinal Corporativa — Año Académico 2026", { x: 0.8, y: 4.2, w: 5, fontSize: 9, color: '94A3B8' });
 
   slide.addText("Colección Científica de Vanguardia", { x: 0.5, y: 4.8, w: 5, fontSize: 9, color: BRAND_ACCENT, fontFace: 'Arial', bold: true });
@@ -550,11 +549,11 @@ export const exportBookToPPT = async (editorials: Editorial[]) => {
   // Slide 3: Prologue
   let prologueSlide = pres.addSlide();
   prologueSlide.background = { color: BRAND_WHITE };
-  addStandardShell(prologueSlide, "Prólogo de Auditoría");
-  prologueSlide.addText("La transformación contable y el rigor tributario se han convertido en pilares irremplazables de la gobernanza corporativa en el Ecuador contemporáneo del año 2026. Los profesionales de la contabilidad y ya no solo fungen como registradores, sino como estrategas jurídicos.\n\nEste Tratado de Inteligencia Normativa recopila el esfuerzo editorial de CONTAPRO DC, entregando análisis doctrinarios de variables impositivas locales y NIIF globales.", { 
+  addStandardShell(prologueSlide, "Prólogo Jurídico");
+  prologueSlide.addText("La defensa constitucional, el debido proceso y la rigurosidad procesal tributaria se han convertido en pilares irremplazables de la gobernanza corporativa en el Ecuador contemporáneo del año 2026. Los profesionales del derecho ya no solo fungen como litigantes, sino como artífices de la estrategia preventiva y la seguridad jurídica.\n\nEste Tratado de Inteligencia Jurídica recopila el esfuerzo editorial de SOLJURE, entregando análisis doctrinarios de las variables normativas locales.", { 
     x: 0.5, y: 1.8, w: 9, fontSize: 13, color: BRAND_NAVY, align: 'justify' 
   });
-  prologueSlide.addText("— Ing. Com. Segundo Cuenca C., Msc. (Investigador Líder)", { 
+  prologueSlide.addText("— Ab. Esteban Ordoñez M., Magíster (Investigador Líder)", { 
     x: 0.5, y: 4.8, w: 9, fontSize: 12, color: BRAND_ACCENT, bold: true, align: 'right' 
   });
 
@@ -702,7 +701,7 @@ export const exportBookToPDF = async (editorials: Editorial[]) => {
     doc.setFontSize(8);
     doc.setTextColor(150, 150, 150);
     doc.text("SOLJURE ECUADOR", 20, pageHeight - 10);
-    doc.text("© 2026 Director Dr. Segundo Cuenca  |  Todos los derechos reservados", pageWidth / 2, pageHeight - 10, { align: 'center' });
+    doc.text("© 2026 Director Ab. Esteban Ordoñez M.  |  Todos los derechos reservados", pageWidth / 2, pageHeight - 10, { align: 'center' });
     if (pageNum) {
       doc.text(`Pág. ${pageNum}`, pageWidth - 20, pageHeight - 10, { align: 'right' });
     }
@@ -790,12 +789,12 @@ export const exportBookToPDF = async (editorials: Editorial[]) => {
   pdf.setFont("times", "bold");
   pdf.setFontSize(18);
   pdf.setTextColor(255, 255, 255);
-  pdf.text("Dr. Segundo Cuenca C., Msc.", 28, 194);
+  pdf.text("Ab. Esteban Ordoñez M., Magíster", 28, 194);
 
   pdf.setFont("helvetica", "normal");
   pdf.setFontSize(9.5);
   pdf.setTextColor(200, 205, 210);
-  pdf.text("Socio Fundador & Magistrado Consultor de Litigio de SOLJURE", 28, 201);
+  pdf.text("Socio Fundador & Director de la Firma SOLJURE", 28, 201);
   pdf.text("Base Intelectual unificada bajo resoluciones de la Corte Nacional y Constitucional", 28, 207);
 
   // Metadata Footer
@@ -878,7 +877,7 @@ export const exportBookToPDF = async (editorials: Editorial[]) => {
   pdf.setFontSize(11);
   pdf.setTextColor(51, 65, 85);
   let textY = 55;
-  const prologueLines = pdf.splitTextToSize("La defensa constitucional, el debido proceso y la rigurosidad procesal tributaria se han convertido en pilares irremplazables de la gobernanza corporativa en el Ecuador contemporáneo del año 2026. Los profesionales del derecho ya no solo fungen como litigantes, sino como artífices de la estrategia preventiva y la seguridad jurídica de las organizaciones de vanguardia.\n\nEste Tratado de Inteligencia Jurídica recopila el esfuerzo editorial continuo de SOLJURE, entregando análisis doctrinarios de las variables procesales locales y gacetas actualizadas de la Corte Constitucional y Nacional. Representa una guía metódica diseñada por abogados expertos, en conjunto con el Dr. Segundo Cuenca, armada para estructurar la toma de decisiones corporativas bajo estricto apego regulatorio.", 170);
+  const prologueLines = pdf.splitTextToSize("La defensa constitucional, el debido proceso y la rigurosidad procesal tributaria se han convertido en pilares irremplazables de la gobernanza corporativa en el Ecuador contemporáneo del año 2026. Los profesionales del derecho ya no solo fungen como litigantes, sino como artífices de la estrategia preventiva y la seguridad jurídica de las organizaciones de vanguardia.\n\nEste Tratado de Inteligencia Jurídica recopila el esfuerzo editorial continuo de SOLJURE, entregando análisis doctrinarios de las variables procesales locales y gacetas actualizadas de la Corte Constitucional y Nacional. Representa una guía metódica diseñada por abogados expertos, en conjunto con el Ab. Esteban Ordoñez M., armada para de manera estratégica guiar la toma de decisiones corporativas bajo estricto apego regulatorio.", 170);
   pdf.text(prologueLines, 20, textY);
   
   textY += (prologueLines.length * 6.5) + 15;
@@ -1278,8 +1277,8 @@ export const exportBookToHTML = (editorials: Editorial[]) => {
             </div>
             <div class="text-center md:text-left">
               <p class="ui-font text-[9px] font-bold text-[#b59441] tracking-widest uppercase mb-0.5">Autor Principal & Director General</p>
-              <h3 class="text-2xl font-bold text-white">Dr. Segundo Cuenca C., Msc.</h3>
-              <p class="ui-font text-[11px] text-slate-400 mt-1">Líder Editorial Académico en Ciencias Jurídicas y Procesales — Colección 2026</p>
+              <h3 class="text-2xl font-bold text-white">Ab. Esteban Ordoñez M., Magíster</h3>
+              <p class="ui-font text-[11px] text-slate-400 mt-1">Director General Académico de la Firma SOLJURE — Colección 2026</p>
             </div>
           </div>
 

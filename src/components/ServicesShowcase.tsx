@@ -411,16 +411,16 @@ export const ServicesShowcase: React.FC = () => {
           <div className="inline-flex items-center gap-2 bg-brand-accent/25 border border-brand-accent/40 rounded-full px-4 py-1.5 backdrop-blur-md">
             <span className="flex h-2 w-2 rounded-full bg-brand-accent animate-ping"></span>
             <span className="text-[10px] uppercase tracking-widest font-bold text-brand-accent flex items-center gap-1">
-              <Sparkles size={11} /> Expertos Tributarios y Contables 2026
+              <Sparkles size={11} /> Expertos en Consultoría Jurídica y Procesal 2026
             </span>
           </div>
 
           <h1 className="text-4xl md:text-5xl font-serif font-extrabold uppercase leading-tight tracking-tight">
-            Servicios Profesionales de Contabilidad y <span className="text-brand-accent">Defensa Fiscal</span>
+            Servicios Profesionales de Litigación y <span className="text-brand-accent">Defesa Jurídica</span>
           </h1>
 
           <p className="text-sm md:text-base text-slate-300 leading-relaxed max-w-2xl font-light">
-            Soluciones gerenciales blindadas, trámites expeditos y asesoría contable científica certificada por el Mgst. Segundo Cuenca C. Transformamos datos fiscales en decisiones estratégicas de alta eficiencia corporativa.
+            Soluciones procesales blindadas, trámites expeditos y asesoría jurídica científica certificada por el Ab. Esteban Ordoñez M. Transformamos desafíos legales en decisiones estratégicas de alta eficiencia corporativa.
           </p>
 
           <div className="flex flex-wrap gap-4 pt-4 justify-center md:justify-start">
@@ -1475,7 +1475,7 @@ export const ServicesShowcase: React.FC = () => {
                                   Prueba Casi Completada ({quizScore} / 100)
                                 </h4>
                                 <p className="text-xs text-slate-300 max-w-sm mx-auto leading-relaxed">
-                                  Para recibir la insignia oficial de habilidades de CONTAPRO DC necesitas responder correctamente todas las causales normativas del Ecuador. ¡Consulta nuestro material y repite!
+                                  Para recibir la insignia oficial de habilidades de SOLJURE necesitas responder correctamente todas las causales normativas del Ecuador. ¡Consulta nuestro material y repite!
                                 </p>
                                 <div className="pt-2 font-mono">
                                   <button

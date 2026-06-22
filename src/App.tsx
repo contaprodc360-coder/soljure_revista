@@ -260,7 +260,7 @@ export default function App() {
       reader.onloadend = () => {
         const base64String = reader.result as string;
         setUserProfileImage(base64String);
-        localStorage.setItem('contapro_host_image', base64String);
+        localStorage.setItem('soljure_host_image', base64String);
       };
       reader.readAsDataURL(file);
     }
@@ -333,9 +333,7 @@ export default function App() {
 
   const isAdmin = (
     user?.email === 'soljure@gmail.com' || 
-    user?.email === 'admin@soljure.com' || 
-    user?.email === 'contaprodc360@gmail.com' || 
-    user?.email === 'admin@contaprodc.com'
+    user?.email === 'admin@soljure.com'
   );
 
   useEffect(() => {
@@ -425,7 +423,7 @@ export default function App() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `CONTAPRO_LIBRARY_BACKUP_${new Date().toISOString().split('T')[0]}.json`;
+    link.download = `SOLJURE_LIBRARY_BACKUP_${new Date().toISOString().split('T')[0]}.json`;
     link.click();
     URL.revokeObjectURL(url);
   };
@@ -449,7 +447,7 @@ export default function App() {
           }
         }
       } catch (err) {
-        alert("Error al procesar el archivo. Asegúrate de que sea un JSON válido de CONTAPRO.");
+        alert("Error al procesar el archivo. Asegúrate de que sea un JSON válido de SOLJURE.");
       }
     };
     reader.readAsText(file);
@@ -1356,7 +1354,7 @@ export default function App() {
             key="login-modal-overlay"
             onClose={() => setShowLoginModal(false)}
             onBypass={(mockUser) => {
-              localStorage.setItem('contapro_master_user', JSON.stringify(mockUser));
+              localStorage.setItem('soljure_master_user', JSON.stringify(mockUser));
               setUser(mockUser);
               setShowLoginModal(false);
             }} 
@@ -1527,7 +1525,7 @@ function MagazineView({
             </div>
             <h3 className="text-2xl font-serif font-extrabold text-white">Consola de Redacción y Compilación Académica</h3>
             <p className="text-xs text-white/70 leading-relaxed font-light">
-              Permite estructurar artículos de alto impacto (más de 800 palabras) sobre normativas NIIF vigentes, reformas del SRI ecuatoriano y auditorías integrales al 2026. Diseñado para redactores, consultores y directores de CONTAPRO DC.
+              Permite estructurar artículos de alto impacto (más de 800 palabras) sobre debido proceso, casación civil, derecho laboral, constitucional y administrativo ecuatoriano. Diseñado para redactores, consultores y directores de SOLJURE.
             </p>
           </div>
           
@@ -2223,9 +2221,9 @@ const SocialStoryOverlay = ({
     },
     { 
       type: 'cta', 
-      content: "Le invitamos a visitar ContaPro DC para el análisis completo.", 
+      content: "Le invitamos a visitar SOLJURE para el análisis doctrinal completo.", 
       image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop",
-      voice: `Les invito cordialmente a visitar mi portal en ContaPro DC para leer este análisis en su totalidad. Accedan ahora a nuestra biblioteca de inteligencia técnica. Sigamos transformando los datos en decisiones inteligentes.` 
+      voice: `Les invito cordialmente a visitar mi portal en SOLJURE para leer este análisis en su totalidad. Accedan ahora a nuestra biblioteca de inteligencia jurídica forense y procesal. Sigamos transformando los argumentos en sentencias favorables.` 
     }
   ], [editorial]);
 
@@ -2860,7 +2858,7 @@ const SocialStoryOverlay = ({
                        transition={{ duration: 1.5, repeat: Infinity }}
                        className="px-12 py-6 bg-brand-navy text-white font-black rounded-full text-sm tracking-[0.3em] uppercase shadow-[0_20px_40px_rgba(15,23,42,0.4)] border border-brand-accent/40"
                     >
-                       CONTAPRO DC
+                       SOLJURE
                     </motion.div>
                   </div>
                 )}
@@ -2873,10 +2871,10 @@ const SocialStoryOverlay = ({
         <div className="p-10 pb-14 flex items-center justify-between bg-white border-t border-brand-bg relative z-20">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 bg-brand-navy rounded-2xl flex items-center justify-center shadow-xl transform -rotate-3 border border-brand-accent/20">
-              <span className="text-brand-accent text-sm font-black">CP</span>
+              <span className="text-brand-accent text-sm font-black">SJ</span>
             </div>
             <div className="flex flex-col">
-              <span className="text-xs font-black tracking-[0.3em] text-brand-navy uppercase">ContaPro DC</span>
+              <span className="text-xs font-black tracking-[0.3em] text-brand-navy uppercase">SOLJURE</span>
               <span className="text-[10px] text-brand-accent font-bold uppercase tracking-widest">Intelligence Hub</span>
             </div>
           </div>
@@ -2887,7 +2885,7 @@ const SocialStoryOverlay = ({
                  if (el) {
                    const canvas = await html2canvas(el, { scale: 3, useCORS: true });
                    const link = document.createElement('a');
-                   link.download = `CONTAPRO_STORY_${currentSlide + 1}.jpg`;
+                   link.download = `SOLJURE_STORY_${currentSlide + 1}.jpg`;
                    link.href = canvas.toDataURL('image/jpeg', 0.9);
                    link.click();
                  }
@@ -2907,7 +2905,7 @@ const SocialStoryOverlay = ({
                  const imgWidth = 210;
                  const imgHeight = (canvas.height * imgWidth) / canvas.width;
                  pdf.addImage(imgData, 'JPEG', 0, (297 - imgHeight) / 2, imgWidth, imgHeight);
-                 pdf.save(`CONTAPRO_STORY_${editorial.title.replace(/\s+/g, '_')}.pdf`);
+                 pdf.save(`SOLJURE_STORY_${editorial.title.replace(/\s+/g, '_')}.pdf`);
                }}
                className="p-3 bg-brand-bg text-red-600 rounded-xl hover:bg-red-600 hover:text-white transition-all shadow-sm border border-red-100"
                title="Descargar Slide como PDF"
@@ -2964,7 +2962,7 @@ function LoginModal({ onClose, onBypass }: { onClose: () => void; onBypass: (moc
     try {
       if (!isRegister && password.trim() === 'SOLJURE_MASTER_2026') {
         const mockUser = {
-          email: email.trim().toLowerCase() === 'admin@soljure.com' || email.trim().toLowerCase() === 'soljure@gmail.com' || email.trim().toLowerCase() === 'admin@contaprodc.com' || email.trim().toLowerCase() === 'contaprodc360@gmail.com'
+          email: email.trim().toLowerCase() === 'admin@soljure.com' || email.trim().toLowerCase() === 'soljure@gmail.com'
             ? email.trim() 
             : 'admin@soljure.com',
           displayName: 'Administrador SOLJURE',
@@ -3208,7 +3206,7 @@ function CategoryRegenerationModal({
             </div>
             <h3 className="text-xl font-serif font-black tracking-wide text-white">REGENERACIÓN MULTI-CATEGORÍA EN CURSO</h3>
             <p className="text-[11px] text-white/60 font-light leading-relaxed">
-              Compilando dinámicamente un tema normativo de Ecuador para cada especialización, redactando un editorial completo académico de más de 800 palabras, diseñando casos prácticos contables con asientos de diario y publicando en la base de datos en línea de CONTAPRO DC.
+              Compilando dinámicamente un tema normativo de Ecuador para cada especialización, redactando un editorial completo académico de más de 800 palabras, diseñando casos prácticos y jurisprudenciales, y publicando en la base de datos en línea de SOLJURE.
             </p>
           </div>
           {allDone && (
@@ -3310,7 +3308,7 @@ function CategoryRegenerationModal({
         {/* Footer / Advertencia */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/10">
           <p className="text-[9px] text-white/40 uppercase tracking-widest text-center sm:text-left leading-normal">
-            * Se utiliza el motor editorial de CONTAPRO DC con cola de reintentos.<br />
+            * Se utiliza el motor editorial de SOLJURE con cola de reintentos.<br />
             No cierres la pestaña para preveer pérdidas de sincronización.
           </p>
           {allDone ? (
@@ -4220,7 +4218,7 @@ function EditorialViewer({
     if (!recordedVideoUrl) return;
     const a = document.createElement('a');
     a.href = recordedVideoUrl;
-    a.download = `GRABACION_PANTALLA_CONTAPRO_${new Date().getTime()}.webm`;
+    a.download = `GRABACION_PANTALLA_SOLJURE_${new Date().getTime()}.webm`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -4273,7 +4271,7 @@ function EditorialViewer({
         plainText = plainText.replace(regex, replacement);
       }
 
-      const fullText = `Estimados colegas. Les habla el departamento técnico de CONTAPRO DC. A continuación, presento de manera académica y profesional el análisis estratégico titulado: ${editorial.title || ""}. Publicado por: ${editorial.author || "CONTAPRO"}. Resumen Ejecutivo: ${editorial.summary || ""}. Ampliación de contenido: ${plainText}`;
+      const fullText = `Estimados colegas. Les habla el departamento de investigación en SOLJURE. A continuación, presento de manera académica y profesional el análisis estratégico titulado: ${editorial.title || ""}. Publicado por: ${editorial.author || "SOLJURE"}. Resumen Ejecutivo: ${editorial.summary || ""}. Ampliación de contenido: ${plainText}`;
       
       const utterance = new SpeechSynthesisUtterance(fullText);
       const voices = window.speechSynthesis.getVoices();
@@ -4586,10 +4584,10 @@ function EditorialViewer({
     // Branding
     ctx.font = '800 30px sans-serif';
     ctx.fillStyle = theme.accent;
-    ctx.fillText("CONTAPRO DC", 540, 1750);
+    ctx.fillText("SOLJURE", 540, 1750);
     ctx.font = 'bold 20px sans-serif';
     ctx.fillStyle = 'rgba(255,255,255,0.4)';
-    ctx.fillText("INTELIGENCIA NORMATIVA", 540, 1800);
+    ctx.fillText("SOLUCIONES JURÍDICAS EFICACES", 540, 1800);
 
     const link = document.createElement('a');
     link.download = `STORY_${index + 1}_${editorial.id}.png`;
@@ -4725,7 +4723,7 @@ function EditorialViewer({
       const url = URL.createObjectURL(wavBlob);
       const link = document.createElement('a');
       link.href = url;
-      link.download = `AUDIOLIBRO_CONTAPRO_${editorial.title.replace(/\s+/g, '_')}.wav`;
+      link.download = `AUDIOLIBRO_SOLJURE_${editorial.title.replace(/\s+/g, '_')}.wav`;
       link.click();
       URL.revokeObjectURL(url);
     } catch (err: any) {
@@ -5021,7 +5019,7 @@ function EditorialViewer({
         // Footer Branding
         ctx.font = '800 40px sans-serif';
         ctx.fillStyle = 'rgba(255,255,255,0.3)';
-        ctx.fillText("CONTAPRO DC • PODCAST STUDIO", canvas.width/2, 1850);
+        ctx.fillText("SOLJURE • PODCAST STUDIO", canvas.width/2, 1850);
 
         currentFrame++;
         setRenderProgress(30 + Math.round((currentFrame / totalFrames) * 70));
@@ -5142,8 +5140,8 @@ function EditorialViewer({
           </div>
           <div style="font-size: 17px; color: #334155; line-height: 1.9;">${processedContent}</div>
           <div style="margin-top: 80px; padding-top: 40px; border-top: 2px solid #f1f5f9; text-align: center;">
-            <div style="margin-bottom: 20px;"><span style="font-size: 24px; font-weight: 900; color: #121d33; font-family: 'Georgia', serif;">CONTAPRO<span style="color: #b59441;">DC</span></span></div>
-            <p style="color: #94a3b8; font-size: 13px; margin: 0; font-weight: 600; letter-spacing: 1px;">INTELIGENCIA NORMATIVA & ESTRATEGIA CONTABLE</p>
+            <div style="margin-bottom: 20px;"><span style="font-size: 24px; font-weight: 900; color: #121d33; font-family: 'Georgia', serif;">SOLJURE</span></div>
+            <p style="color: #94a3b8; font-size: 13px; margin: 0; font-weight: 600; letter-spacing: 1px;">SOLUCIONES JURÍDICAS EFICACES</p>
           </div>
         </div>
       </div>
@@ -5182,8 +5180,8 @@ function EditorialViewer({
         slide.addShape(pres.ShapeType.rect, { x: 0, y: 0, w: '100%', h: 0.05, fill: { color: BRAND_ACCENT } });
         
         // Brand identification
-        slide.addText("CONTAPRO DC", { x: 0.5, y: 0.2, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_NAVY, bold: true });
-        slide.addText("INTELIGENCIA NORMATIVA", { x: '40%', y: 0.2, w: 3, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'center', charSpacing: 2 });
+        slide.addText("SOLJURE", { x: 0.5, y: 0.2, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_NAVY, bold: true });
+        slide.addText("SOLUCIONES JURÍDICAS EFICACES", { x: '40%', y: 0.2, w: 3, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'center', charSpacing: 2 });
         slide.addText("© 2026", { x: 8, y: 0.2, w: 1.5, fontSize: 8, fontFace: 'Arial', color: BRAND_SLATE, align: 'right' });
         
         if (title) {
@@ -5195,7 +5193,7 @@ function EditorialViewer({
         }
         
         // Sub-decor on bottom
-        slide.addText("www.contaprodc.com", { x: 0.5, y: 5.3, w: 3, fontSize: 8, color: BRAND_SLATE, italic: true });
+        slide.addText("www.soljure.com", { x: 0.5, y: 5.3, w: 3, fontSize: 8, color: BRAND_SLATE, italic: true });
       };
 
       // 1. Corporate Cover Slide
@@ -5303,9 +5301,9 @@ function EditorialViewer({
       closingSlide.background = { color: BRAND_NAVY };
       closingSlide.addShape(pres.ShapeType.rect, { x: 0, y: '45%', w: '100%', h: '10%', fill: { color: '1A2A47' } });
       closingSlide.addText("GRACIAS.", { x: 0, y: '40%', w: '100%', align: 'center', fontSize: 60, color: BRAND_WHITE, bold: true });
-      closingSlide.addText("CONTAPRO DC - Inteligencia que genera confianza.", { x: 0, y: '58%', w: '100%', align: 'center', fontSize: 14, color: BRAND_ACCENT, bold: true });
+      closingSlide.addText("SOLJURE - Soluciones Jurídicas Eficaces.", { x: 0, y: '58%', w: '100%', align: 'center', fontSize: 14, color: BRAND_ACCENT, bold: true });
 
-      await pres.writeFile({ fileName: `CONTAPRO_${editorial.title.replace(/\s+/g, '_')}.pptx` });
+      await pres.writeFile({ fileName: `SOLJURE_${editorial.title.replace(/\s+/g, '_')}.pptx` });
     } catch (err) {
       console.error("PPT Export Error:", err);
       alert("Error al generar el PPT.");
@@ -5339,7 +5337,7 @@ function EditorialViewer({
       s.background = { color: BRAND_WHITE };
 
       // Header
-      s.addText("CONTAPRO DC", { x: 0.5, y: 0.3, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_SLATE, bold: true });
+      s.addText("SOLJURE", { x: 0.5, y: 0.3, w: 2, fontSize: 10, fontFace: 'Arial', color: BRAND_SLATE, bold: true });
       s.addText(`PRODUCCIÓN MULTIMEDIA - SLIDE 0${idx + 1}`, { x: '40%', y: 0.3, w: 5, fontSize: 10, fontFace: 'Arial', color: BRAND_SLATE, align: 'right', bold: true });
       
       // Visual Area (Simulating the screen)
@@ -5367,7 +5365,7 @@ function EditorialViewer({
     endSlide.background = { color: BRAND_NAVY };
     endSlide.addText("Listo para producir.", { x: 0, y: '40%', w: '100%', align: 'center', fontSize: 80, color: BRAND_WHITE, bold: true });
 
-    pres.writeFile({ fileName: `STORYBOARD_CONTAPRO_${editorial.title.replace(/\s+/g, '_')}.pptx` });
+    pres.writeFile({ fileName: `STORYBOARD_SOLJURE_${editorial.title.replace(/\s+/g, '_')}.pptx` });
   };
 
   const exportToWord = async () => {
@@ -5393,8 +5391,7 @@ function EditorialViewer({
               children: [
                 new Paragraph({
                   children: [
-                    new TextRun({ text: "CONTAPRO ", bold: true, color: "121D33", size: 24 }),
-                    new TextRun({ text: "DC", bold: true, color: "B59441", size: 24 }),
+                    new TextRun({ text: "SOLJURE", bold: true, color: "121D33", size: 24 }),
                   ],
                   border: { bottom: { color: "B59441", space: 1, style: "single", size: 6 } },
                   spacing: { after: 200 }
@@ -5412,7 +5409,7 @@ function EditorialViewer({
                     new TextRun({ children: [PageNumber.CURRENT], size: 18 }),
                     new TextRun({ text: " de ", size: 18 }),
                     new TextRun({ children: [PageNumber.TOTAL_PAGES], size: 18 }),
-                    new TextRun({ text: " | www.contaprodc.com", size: 18, color: "475569" }),
+                    new TextRun({ text: " | www.soljure.com", size: 18, color: "475569" }),
                   ],
                 }),
               ],
@@ -5504,7 +5501,7 @@ function EditorialViewer({
       });
 
       const blob = await Packer.toBlob(docData);
-      saveAs(blob, `CONTAPRO_DC_${editorial.title.replace(/\s+/g, '_')}.docx`);
+      saveAs(blob, `SOLJURE_${editorial.title.replace(/\s+/g, '_')}.docx`);
     } catch (err) {
       console.error("Word Export Error:", err);
       alert("Error al generar el documento Word.");
@@ -5550,22 +5547,22 @@ function EditorialViewer({
       pdf.setTextColor(255, 255, 255);
       pdf.text("D", margin + 8.5, 23);
 
-      // REVISTA CONTABLE, FINANCIERA Y EMPRESARIAL
+      // PORTAL EDITORIAL DE INVESTIGACIÓN JURÍDICA
       pdf.setFont("helvetica", "bold");
       pdf.setFontSize(10);
       pdf.setTextColor(181, 148, 65);
-      pdf.text("REVISTA CONTABLE, FINANCIERA Y EMPRESARIAL", margin + 18, 13);
+      pdf.text("PORTAL EDITORIAL DE INVESTIGACIÓN JURÍDICA", margin + 18, 13);
 
-      // CONTAPRO DC
+      // SOLJURE
       pdf.setFontSize(22);
       pdf.setTextColor(255, 255, 255);
-      pdf.text("CONTAPRO DC", margin + 18, 21);
+      pdf.text("SOLJURE", margin + 18, 21);
 
-      // CONSULTORÍA PROFESIONAL Y ESTRATÉGICA
+      // SOLUCIONES JURÍDICAS EFICACES
       pdf.setFont("helvetica", "normal");
       pdf.setFontSize(9);
       pdf.setTextColor(255, 255, 255);
-      pdf.text("CONSULTORÍA PROFESIONAL Y ESTRATÉGICA", margin + 18, 26, { charSpace: 1 });
+      pdf.text("SOLUCIONES JURÍDICAS EFICACES", margin + 18, 26, { charSpace: 1 });
 
       // Editorial Title (Rendered safely)
       pdf.setFont("helvetica", "bold");
@@ -5594,8 +5591,8 @@ function EditorialViewer({
       
       const areaText = `ÁREA: ${editorial.area.toUpperCase()}`;
       const dateText = `FECHA: ${editorial.date || ''}`;
-      const displayAuthor = (editorial.author.toUpperCase().includes("ROSALES") || editorial.author.toUpperCase().includes("FRANCISCO"))
-        ? "ING. COM. SEGUNDO CUENCA C, MAGISTER EN AUDITORIA INTEGRAL"
+      const displayAuthor = (editorial.author.toUpperCase().includes("ROSALES") || editorial.author.toUpperCase().includes("FRANCISCO") || editorial.author.toUpperCase().includes("SEGUNDO"))
+        ? "AB. ESTEBAN ORDOÑEZ M, MAGISTER EN DERECHO CONSTITUCIONAL Y DEFENSA PROCESAL"
         : editorial.author.toUpperCase();
       const authorText = `AUTOR: ${displayAuthor}`;
       
@@ -5871,11 +5868,11 @@ function EditorialViewer({
         pdf.setFont("helvetica", "normal");
         pdf.setFontSize(8);
         pdf.setTextColor(150, 150, 150);
-        pdf.text(`CONTAPRO DC ECUADOR | Reporte de Inteligencia Normativa`, margin, 287);
+        pdf.text(`SOLJURE ECUADOR | Tratado de Inteligencia Jurídica`, margin, 287);
         pdf.text(`Página ${i} de ${totalPages}`, pageWidth - margin, 287, { align: 'right' });
       }
 
-      pdf.save(`CONTAPRO_TÉCNICO_${editorial.title.replace(/\s+/g, '_')}.pdf`);
+      pdf.save(`SOLJURE_TÉCNICO_${editorial.title.replace(/\s+/g, '_')}.pdf`);
     } catch (err) {
       console.error("PDF Export Error:", err);
       alert("Error al generar el PDF de alta calidad.");
@@ -5899,7 +5896,7 @@ function EditorialViewer({
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = `CONTAPRO_DC_${editorial.title.replace(/\s+/g, '_')}.md`;
+    link.download = `SOLJURE_${editorial.title.replace(/\s+/g, '_')}.md`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -5968,7 +5965,7 @@ function EditorialViewer({
 
           {/* Top bar header of physical page */}
           <div className="flex justify-between items-center text-[8px] font-black uppercase text-brand-slate tracking-widest border-b border-brand-border/20 pb-2 mb-4 select-none">
-            <span>CONTAPRO DC • INTELIGENCIA NORMATIVA</span>
+            <span>SOLJURE • SOLUCIONES JURÍDICAS EFICACES</span>
             <span className="text-brand-accent">{editorial?.area}</span>
           </div>
 
@@ -6197,7 +6194,7 @@ function EditorialViewer({
 
                     <div className="space-y-2 mt-auto">
                       <div className="text-[9px] text-[#b59441] uppercase font-black tracking-widest bg-white/5 py-1.5 rounded border border-white/5">
-                        AUTOR EXPOSITOR: {editorial?.author || "DECON CONTAPRO"}
+                        AUTOR EXPOSITOR: {editorial?.author || "DIRECCIÓN ACADÉMICA SOLJURE"}
                       </div>
                       <div className="text-[7.5px] text-white/30 tracking-widest font-black uppercase flex justify-between px-2 mt-2">
                         <span>ECUADOR 2026</span>
@@ -6227,11 +6224,11 @@ function EditorialViewer({
                             </div>
                             <h3 className="text-brand-accent text-xs font-black uppercase tracking-[0.3em] mb-2">Fin de la Presentación</h3>
                             <p className="text-white/50 text-[10px] leading-relaxed max-w-xs mx-auto">
-                              CONTAPRO DC agradece su lectura académica. Todos los análisis cuentan con el respaldo de nuestro departamento de investigación jurídica.
+                              SOLJURE agradece su lectura académica. Todos los análisis cuentan con el respaldo de nuestro departamento de investigación jurídica.
                             </p>
                           </div>
                           <div className="text-[7.5px] text-white/30 tracking-widest uppercase">
-                            © 2026 CONTAPRO DC CORPORATIVO
+                            © 2026 SOLJURE CORPORATIVO
                           </div>
                         </div>
                       )}
@@ -6470,7 +6467,7 @@ function EditorialViewer({
                         <div className="absolute top-4 left-4 text-[10px] text-brand-accent font-bold">0{i+1}</div>
                         <h5 className="text-white font-serif text-lg mb-4 leading-tight">{slide.title}</h5>
                         <p className="text-white/60 text-[10px] leading-relaxed">{slide.body}</p>
-                        <div className="absolute bottom-4 w-full left-0 text-[8px] text-brand-accent font-bold uppercase tracking-widest">CONTAPRO DC</div>
+                        <div className="absolute bottom-4 w-full left-0 text-[8px] text-brand-accent font-bold uppercase tracking-widest">SOLJURE</div>
                       </div>
 
                       <div className="p-4 bg-gray-900 border-t border-white/10">
@@ -6543,13 +6540,13 @@ function EditorialViewer({
           >
             <div className="bg-brand-navy p-6 text-white text-center">
               <h3 className="text-xl font-serif">Compartir Artículo</h3>
-              <p className="text-[10px] uppercase tracking-widest text-white/60 mt-1">Inteligencia Normativa CONTAPRO DC</p>
+              <p className="text-[10px] uppercase tracking-widest text-white/60 mt-1">Rigor Doctrinal Científico • SOLJURE</p>
             </div>
             <div className="p-8 grid grid-cols-1 gap-4">
               <button 
                 onClick={() => {
                   const url = encodeURIComponent(window.location.href);
-                  const text = encodeURIComponent(`Lee este artículo de CONTAPRO DC: ${editorial.title}`);
+                  const text = encodeURIComponent(`Lee este artículo de SOLJURE: ${editorial.title}`);
                   window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
                 }}
                 className="flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:bg-brand-bg transition-all group"
@@ -6582,7 +6579,7 @@ function EditorialViewer({
               <button 
                 onClick={() => {
                   const subject = encodeURIComponent(`Interesante artículo: ${editorial.title}`);
-                  const body = encodeURIComponent(`Te recomiendo este artículo de CONTAPRO DC: ${window.location.href}`);
+                  const body = encodeURIComponent(`Te recomiendo este artículo de SOLJURE: ${window.location.href}`);
                   window.location.href = `mailto:?subject=${subject}&body=${body}`;
                 }}
                 className="flex items-center gap-4 p-4 rounded-xl border border-brand-border hover:bg-brand-bg transition-all group"
@@ -6957,7 +6954,7 @@ function EditorialViewer({
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{cleanEditorialContent(editorial.content)}</ReactMarkdown>
             </div>
 
-            {videoScript && (
+            {videoScript && isAdmin && (
               <motion.div 
                 id="video-promo-section"
                 initial={{ opacity: 0, y: 20 }}
@@ -7428,9 +7425,9 @@ function EditorialStudio({ onSave, initialEditorial, editorials = [] }: { onSave
                 <Sparkles size={16} className="text-brand-accent animate-pulse" />
                 <span className="text-[10px] uppercase font-black tracking-[0.25em] text-brand-accent">Asistente Editorial de Compilación Tecnológica</span>
               </div>
-              <h3 className="text-sm font-semibold mb-2 text-white">¿Cuál es el tema normativo de tu nuevo editorial para CONTAPRO DC?</h3>
+              <h3 className="text-sm font-semibold mb-2 text-white">¿Cuál es el tema doctrinal o procesal de tu nuevo editorial para SOLJURE?</h3>
               <p className="text-[11px] text-white/60 mb-4 font-light leading-relaxed">
-                Nuestro sistema compilará un artículo de alto impacto y académico (más de 800 palabras), citando normativa internacional (NIIF) y local (SRI) ecuatoriana al 2026, con asientos contables y gestión de riesgos.
+                Nuestro sistema compilará un artículo de alto impacto doctoral y procesal (más de 800 palabras), citando gacetas, sentencias hito de la Corte Constitucional y la Corte Nacional del Ecuador al 2026, con tablas y análisis forense.
               </p>
 
               {/* Configuración de API Key para Despliegues Externos */}
@@ -7457,9 +7454,9 @@ function EditorialStudio({ onSave, initialEditorial, editorials = [] }: { onSave
                           const val = e.target.value;
                           setCustomApiKey(val);
                           if (val.trim()) {
-                            localStorage.setItem("CONTAPRO_GEMINI_API_KEY", val.trim());
+                            localStorage.setItem("SOLJURE_GEMINI_API_KEY", val.trim());
                           } else {
-                            localStorage.removeItem("CONTAPRO_GEMINI_API_KEY");
+                            localStorage.removeItem("SOLJURE_GEMINI_API_KEY");
                           }
                         }}
                       />

@@ -8,11 +8,13 @@ import {
   createUserWithEmailAndPassword,
   updateProfile 
 } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';
+import { getFirestore, initializeFirestore } from 'firebase/firestore';
 import firebaseConfig from '../../firebase-applet-config.json';
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app, firebaseConfig.firestoreDatabaseId || 'ai-studio-52de35cf-421b-4edb-b2f8-b38c1eca0a0e');
+export const db = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling: true,
+}, firebaseConfig.firestoreDatabaseId || 'ai-studio-49bc3000-0ffc-430f-9c72-1ca8c5c32b2a');
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 

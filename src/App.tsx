@@ -247,7 +247,124 @@ export function cleanEditorialContent(content: string): string {
     return true;
   });
 
-  return filteredLines.join('\n').trim();
+  let result = filteredLines.join('\n').trim();
+  // Normalize any old or generic references header to the single unified title
+  result = result
+    .replace(/^#+\s*(REFERENCIAS|BIBLIOGRAFÍA|BIBLIOGRAFIA|REFERENCIAS BIBLIOGRÁFICAS|REFERENCIAS\s+BIBLIOGRAFICAS|FUENTES\s+DE\s+CONSULTA|FUENTES\s+BIBLIOGRÁFICAS\s+DE\s+INTELIGENCIA|FUENTES\s+BIBLIOGRAFICAS\s+DE\s+INTELIGENCIA)\b/gim, 
+      '## FUENTES BIBLIOGRÁFICAS Y JURISPRUDENCIALES DE CONSULTA'
+    );
+  return consolidateFinalSections(result);
+}
+
+/**
+ * Consolidates all Conclusiones, Recomendaciones, and Bibliografía/Fuentes into exactly
+ * one structured section of each at the very end of the final compiled article.
+ */
+function consolidateFinalSections(content: string): string {
+  const lines = content.split('\n');
+  const bodyLines: string[] = [];
+  const conclusionItems: string[] = [];
+  const recommendationItems: string[] = [];
+  const referenceItems: string[] = [];
+
+  let currentSection: 'body' | 'conclusions' | 'recommendations' | 'references' = 'body';
+
+  const conclusionRegex = /^#+\s*(\d+\.?\s+)?conclusiones/i;
+  const recommendationRegex = /^#+\s*(\d+\.?\s+)?recomendaciones/i;
+  const referenceRegex = /^#+\s*(\d+\.?\s+)?(referencias|bibliograf[ií]a|fuentes\s+de\s+consulta|fuentes\s+bibliogr[aá]ficas|fuentes\s+bibliogr[aá]ficas\s+y\s+jurisprudenciales\s+de\s+consulta)/i;
+  
+  // Matches normal heading starting lines to switch back to body from a nested block if model acts weird
+  const otherHeadingRegex = /^#+\s+\d*/;
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+
+    if (conclusionRegex.test(trimmed)) {
+      currentSection = 'conclusions';
+      continue;
+    } else if (recommendationRegex.test(trimmed)) {
+      currentSection = 'recommendations';
+      continue;
+    } else if (referenceRegex.test(trimmed)) {
+      currentSection = 'references';
+      continue;
+    } else if (otherHeadingRegex.test(trimmed) && trimmed.startsWith('#')) {
+      currentSection = 'body';
+    }
+
+    if (currentSection === 'body') {
+      bodyLines.push(line);
+    } else if (currentSection === 'conclusions') {
+      if (trimmed && !trimmed.startsWith('#')) {
+        conclusionItems.push(line);
+      }
+    } else if (currentSection === 'recommendations') {
+      if (trimmed && !trimmed.startsWith('#')) {
+        recommendationItems.push(line);
+      }
+    } else if (currentSection === 'references') {
+      if (trimmed && !trimmed.startsWith('#')) {
+        referenceItems.push(line);
+      }
+    }
+  }
+
+  const parseListItems = (items: string[]): string[] => {
+    const cleaned: string[] = [];
+    for (const item of items) {
+      const text = item.trim();
+      if (!text) continue;
+      // Strip markdown list numbers/bullets (e.g. "1.", "2.", "•", "-", "*")
+      const matches = text.match(/^(?:\d+[\s.-]*|[-*•+])\s*(.*)$/);
+      if (matches && matches[1]) {
+        if (matches[1].trim()) cleaned.push(matches[1].trim());
+      } else {
+        cleaned.push(text);
+      }
+    }
+    return cleaned;
+  };
+
+  const parsedConclusions = parseListItems(conclusionItems);
+  const parsedRecommendations = parseListItems(recommendationItems);
+  const uniqueReferences = Array.from(new Set(referenceItems.map(r => r.trim()))).filter(Boolean);
+
+  let finalBody = bodyLines.join('\n').trim();
+
+  const endings: string[] = [];
+
+  if (parsedConclusions.length > 0) {
+    endings.push('## Conclusiones');
+    parsedConclusions.forEach((item, idx) => {
+      endings.push(`${idx + 1}. ${item}`);
+    });
+    endings.push('');
+  }
+
+  if (parsedRecommendations.length > 0) {
+    endings.push('## Recomendaciones');
+    parsedRecommendations.forEach((item, idx) => {
+      endings.push(`${idx + 1}. ${item}`);
+    });
+    endings.push('');
+  }
+
+  if (uniqueReferences.length > 0) {
+    endings.push('## FUENTES BIBLIOGRÁFICAS Y JURISPRUDENCIALES DE CONSULTA');
+    uniqueReferences.forEach(ref => {
+      if (ref.startsWith('-') || ref.startsWith('*') || ref.startsWith('•')) {
+        endings.push(ref);
+      } else if (/^\d+\./.test(ref)) {
+        endings.push(ref);
+      } else {
+        endings.push(`• ${ref}`);
+      }
+    });
+    endings.push('');
+  }
+
+  return finalBody + '\n\n' + endings.join('\n').trim();
 }
 
 export default function App() {
@@ -611,7 +728,7 @@ export default function App() {
           title: generated.title,
           summary: generated.summary,
           managerSummary: generated.managerSummary || '',
-          content: generated.content,
+          content: cleanEditorialContent(generated.content),
           author: "ING. COM. SEGUNDO CUENCA C, MAGISTER EN AUDITORIA INTEGRAL",
           date: new Date().toLocaleDateString('es-EC', { day: 'numeric', month: 'short', year: 'numeric' }),
           area: cat,
@@ -3668,7 +3785,7 @@ function FullReportViewer({
             <div class="mb-12 inline-block">
                <span class="text-[13px] font-black uppercase tracking-[1em] text-brand-accent border-y border-brand-accent/30 py-3 px-8 block">Edición Especial de Inteligencia Jurídica</span>
             </div>
-            <h1 class="text-[10vw] lg:text-[100px] font-serif font-black leading-[0.8] tracking-tighter mb-12 uppercase">
+            <h1 class="text-[10vw] lg:text-[100px] font-serif font-black leading-[1.1] tracking-tighter mb-12 uppercase">
                REVISTA <br/> <span class="brand-accent">INTERACTIVA</span> <br/> JURÍDICA
             </h1>
             <div class="flex justify-center items-center gap-10 mt-16">
@@ -3724,7 +3841,7 @@ function FullReportViewer({
                     <span class="text-[11px] font-bold text-gray-300 uppercase tracking-widest">${ed.readTime} Lectura</span>
                   </div>
                   
-                  <h2 class="text-6xl font-serif font-black brand-navy mb-16 leading-[1.0] tracking-tighter">
+                  <h2 class="text-4xl md:text-6xl font-serif font-black brand-navy mb-16 leading-[1.15] tracking-tighter">
                     ${ed.title}
                   </h2>
                   
@@ -3762,7 +3879,7 @@ function FullReportViewer({
         </main>
 
         <footer class="bg-[#121d33] text-white py-40 text-center relative overflow-hidden">
-          <div class="absolute inset-0 opacity-5">
+          <div class="absolute inset-0 opacity-5 pointer-events-none">
             <p class="text-[25vw] font-black tracking-tighter opacity-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 leading-none uppercase">LEGAL</p>
           </div>
           <div class="max-w-4xl mx-auto px-6 relative z-10">
@@ -3867,7 +3984,7 @@ function FullReportViewer({
                  <div className="w-12 h-1 bg-brand-accent rounded-full"></div>
                  <span className="text-[10px] font-black text-brand-accent uppercase tracking-[0.4em]">Estructura Editorial</span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-serif font-black text-brand-navy leading-none">
+              <h2 className="text-4xl lg:text-5xl font-serif font-black text-brand-navy leading-tight">
                 Índice <span className="text-brand-accent">Interactivo</span>
               </h2>
             </div>
@@ -3986,7 +4103,7 @@ function FullReportViewer({
                    </div>
                 </div>
 
-                <h2 className="text-5xl lg:text-7xl font-serif font-black text-brand-navy mb-12 leading-[1.05] tracking-tight group-hover:text-brand-corporate transition-colors">
+                <h2 className="text-4xl md:text-5xl lg:text-7xl font-serif font-black text-brand-navy mb-12 leading-[1.15] tracking-tight group-hover:text-brand-corporate transition-colors">
                   {ed.title}
                 </h2>
                 
@@ -4013,7 +4130,7 @@ function FullReportViewer({
                 </div>
 
                 <div className="prose prose-slate max-w-none lg:prose-2xl mb-20">
-                  <div className="markdown-body font-sans text-gray-700 leading-[1.8] text-xl text-justify font-light opacity-90">
+                  <div className="markdown-body text-brand-navy tracking-normal">
                     <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                       {cleanEditorialContent(ed.content)}
                     </ReactMarkdown>
@@ -6950,7 +7067,7 @@ function EditorialViewer({
               </div>
             )}
 
-            <div className="markdown-body editorial-text font-sans text-lg leading-[2.4] tracking-wide text-brand-navy">
+            <div className="markdown-body editorial-text text-brand-navy tracking-normal">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{cleanEditorialContent(editorial.content)}</ReactMarkdown>
             </div>
 
@@ -7287,7 +7404,7 @@ function EditorialStudio({ onSave, initialEditorial, editorials = [] }: { onSave
       title,
       summary: summary || "Análisis técnico generado.",
       managerSummary,
-      content,
+      content: cleanEditorialContent(content),
       author,
       date: new Date(date).toLocaleDateString('es-EC', { day: 'numeric', month: 'short', year: 'numeric' }),
       area,

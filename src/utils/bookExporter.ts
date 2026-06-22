@@ -249,7 +249,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
       new Paragraph({ text: `• Capítulo ${idx + 1}: ${ed.title.toUpperCase()} (Área: ${ed.area}) ... Pág. ${5 + idx}`, spacing: { after: 100 } })
     ),
     new Paragraph({ text: "C. COMPLEMENTOS Y ANEXOS DOCTRINARIOS", heading: HeadingLevel.HEADING_3, spacing: { before: 200, after: 100 } }),
-    new Paragraph({ text: "• Bibliografía Oficial y Material de Consulta ............................ Pág. X", spacing: { after: 100 } }),
+    new Paragraph({ text: "• Fuentes Bibliográficas y Jurisprudenciales de Consulta .................. Pág. X", spacing: { after: 100 } }),
     new Paragraph({ text: "• Anexos Técnicos de Alícuotas y Conciliación .......................... Pág. XI", spacing: { after: 100 } }),
     new Paragraph({ text: "• Anexo Especial: Métrica de Cobertura Científica ..................... Pág. XII", spacing: { after: 100 } })
   );
@@ -366,7 +366,7 @@ export const exportBookToWord = async (editorials: Editorial[]) => {
   // Bibliography
   children.push(
     new Paragraph({
-      text: "BIBLIOGRAFÍA COMPLEMENTARIA CIENTÍFICA",
+      text: "FUENTES BIBLIOGRÁFICAS Y JURISPRUDENCIALES DE CONSULTA",
       heading: HeadingLevel.HEADING_1,
       spacing: { before: 500, after: 300 },
       pageBreakBefore: true,
@@ -540,7 +540,7 @@ export const exportBookToPPT = async (editorials: Editorial[]) => {
                 "B. CAPÍTULOS DE INTELIGENCIA TÉCNICA (EDITORIALES)\n" + 
                 bookChapters.map((ed, i) => `  ${i+3}. Cap. ${i+1}: ${ed.title.substring(0, 50)}...`).join('\n') + 
                 "\n\nC. DOCTRINA Y ANEXOS\n" + 
-                "  *. Bibliografía Oficial y Fuentes de Consulta\n" + 
+                "  *. Fuentes Bibliográficas y Jurisprudenciales de Consulta\n" + 
                 "  *. Anexo Conceptual de Alícuotas y Conciliaciones\n" + 
                 "  *. Anexo Especial: Diagramas de Eficacia de Inteligencia 2026", { 
     x: 0.5, y: 1.8, w: 9, h: 4, fontSize: 11, color: BRAND_NAVY, fontFace: 'Arial' 
@@ -618,8 +618,8 @@ export const exportBookToPPT = async (editorials: Editorial[]) => {
   // Slide: Bibliography
   let bibSlide = pres.addSlide();
   bibSlide.background = { color: BRAND_WHITE };
-  addStandardShell(bibSlide, "Bibliografía y Doctrina");
-  bibSlide.addText("FUENTES LEGALES DE INTELIGENCIA:\n\n" + 
+  addStandardShell(bibSlide, "Fuentes de Consulta");
+  bibSlide.addText("FUENTES BIBLIOGRÁFICAS Y JURISPRUDENCIALES DE CONSULTA:\n\n" + 
                 "1. Servicio de Rentas Internas del Ecuador (SRI). (2026). Resoluciones vigentes de retención.\n" + 
                 "2. Asamblea Nacional del Ecuador. (2025). Ley Orgánica de Régimen Tributario Interno.\n" + 
                 "3. International Accounting Standards Board (IASB). (2024). NIIF Completas e IFRS para PYMEs.\n" + 
@@ -853,7 +853,7 @@ export const exportBookToPDF = async (editorials: Editorial[]) => {
   pdf.text("C. DOCTRINA COMPLEMENTARIA Y GUÍAS", 20, indexY);
   pdf.setFont("helvetica", "normal");
   indexY += 8;
-  pdf.text("*. Bibliografía Oficial y Fuentes de Inteligencia ..................................................... Pág. X", 25, indexY);
+  pdf.text("*. Fuentes Bibliográficas y Jurisprudenciales de Consulta .............................................. Pág. X", 25, indexY);
   indexY += 8;
   pdf.text("*. Anexo Conceptual de Alícuotas de Retención .................................................... Pág. XI", 25, indexY);
   indexY += 8;
@@ -1055,12 +1055,12 @@ export const exportBookToPDF = async (editorials: Editorial[]) => {
   // Step 6: Bibliography
   pdf.addPage();
   pageCount++;
-  addHeaderAndFooter(pdf, "Bibliografía", pageCount);
+  addHeaderAndFooter(pdf, "Fuentes de Consulta", pageCount);
 
   pdf.setFont("helvetica", "bold");
   pdf.setFontSize(16);
   pdf.setTextColor(18, 29, 51);
-  pdf.text("BIBLIOGRAFÍA COMPLEMENTARIA CIENTÍFICA", 20, 35);
+  pdf.text("FUENTES BIBLIOGRÁFICAS Y JURISPRUDENCIALES DE CONSULTA", 20, 35);
   pdf.setDrawColor(181, 148, 65);
   pdf.line(20, 40, 130, 40);
 
@@ -1313,7 +1313,7 @@ export const exportBookToHTML = (editorials: Editorial[]) => {
             `).join('')}
             <li class="flex items-baseline gap-4">
               <span class="text-accent font-bold ui-font">Bib</span>
-              <a href="#bibliography" class="hover:text-accent transition-colors border-b border-dotted border-slate-600 flex-1">Bibliografía Oficial de Referencia Doctrinaria</a>
+              <a href="#bibliography" class="hover:text-accent transition-colors border-b border-dotted border-slate-600 flex-1">Fuentes Bibliográficas y Jurisprudenciales de Consulta</a>
               <span class="text-slate-400 text-xs ui-font">Referencias</span>
             </li>
             <li class="flex items-baseline gap-4">
@@ -1410,8 +1410,8 @@ export const exportBookToHTML = (editorials: Editorial[]) => {
 
         <!-- 6. BIBLIOGRAPHY -->
         <article id="bibliography" class="card">
-          <span class="text-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block ui-font">BIBLIOGRAFÍA</span>
-          <h2 class="text-3xl serif mb-8 leading-tight">Fuentes Bibliográficas de Inteligencia</h2>
+          <span class="text-accent text-[10px] font-bold uppercase tracking-[0.3em] mb-4 block ui-font">FUENTES DE CONSULTA</span>
+          <h2 class="text-3xl serif mb-8 leading-tight">Fuentes Bibliográficas y Jurisprudenciales de Consulta</h2>
           <div class="text-slate-300 leading-relaxed text-justify">
             <ul class="space-y-4 list-disc pl-6 text-slate-300 ui-font text-xs">
               <li><strong>Servicio de Rentas Internas del Ecuador (SRI). (2026).</strong> Resoluciones de directores para alícuotas y retenciones en vigencia en el Registro Oficial de la República de Ecuador.</li>

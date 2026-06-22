@@ -20,8 +20,8 @@ service cloud.firestore {
     function isAdmin() {
       return request.auth == null || 
         (isSignedIn() && (
-          request.auth.token.email == 'contaprodc360@gmail.com' ||
-          request.auth.token.email == 'admin@contaprodc.com'
+          request.auth.token.email == 'soljure@gmail.com' ||
+          request.auth.token.email == 'admin@soljure.com'
         ));
     }
 

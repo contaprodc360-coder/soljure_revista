@@ -38,7 +38,7 @@
     scroll-behavior: smooth;
   }
 
-  h1, h2, h3, .editorial-text {
+  h1, h2, h3 {
     @apply font-serif font-bold;
   }
 }
@@ -99,14 +99,14 @@
   @apply bg-brand-navy text-white px-6 py-2.5 rounded-sm hover:bg-brand-corporate transition-all duration-300 font-medium tracking-wide flex items-center gap-2;
 }
 
-.markdown-body h1 { @apply text-5xl font-serif mb-8 text-brand-navy border-b-2 border-brand-accent/20 pb-4 scroll-mt-24 tracking-tight leading-tight; }
-.markdown-body h2 { @apply text-3xl font-serif mb-8 mt-16 text-brand-navy scroll-mt-24 tracking-tight border-b-2 border-brand-accent/30 pb-2 leading-snug; }
-.markdown-body h3 { @apply text-2xl font-serif mb-4 mt-10 text-brand-navy scroll-mt-24 leading-snug; }
-.markdown-body p { @apply mb-8 leading-relaxed text-xl text-brand-navy/90 font-serif; }
+.markdown-body h1 { @apply text-3xl md:text-5xl font-serif mb-6 text-brand-navy border-b-2 border-brand-accent/20 pb-4 scroll-mt-24 tracking-tight leading-tight; }
+.markdown-body h2 { @apply text-2xl md:text-3xl font-serif mb-6 mt-12 text-brand-navy scroll-mt-24 tracking-tight border-b-2 border-brand-accent/30 pb-2 leading-snug; }
+.markdown-body h3 { @apply text-xl md:text-2xl font-serif mb-4 mt-8 text-brand-navy scroll-mt-24 leading-snug; }
+.markdown-body p { @apply mb-6 leading-relaxed text-base md:text-lg lg:text-[19px] text-brand-navy/95 font-serif text-justify; }
 
 .markdown-body table { @apply w-full border-collapse bg-white text-left; }
 .markdown-body thead { @apply border-b-4 border-brand-accent bg-brand-navy; }
-.markdown-body .table-wrapper { @apply w-full overflow-x-auto mb-12 rounded-lg border-2 border-brand-navy/10 shadow-lg; }
+.markdown-body .table-wrapper { @apply w-full overflow-x-auto mb-8 rounded-lg border-2 border-brand-navy/10 shadow-lg; }
 .markdown-body th { @apply text-white text-[10px] uppercase tracking-[0.2em] p-4 font-black border-r border-white/10 last:border-r-0; min-width: 120px; }
 .markdown-body td { @apply p-4 text-sm border-b border-brand-border text-brand-navy font-sans last:border-r-0 leading-tight; }
 .markdown-body tr:last-child td { @apply border-b-0; }
@@ -118,8 +118,8 @@
 .markdown-body em { @apply block text-center text-sm text-brand-slate mt-[-1rem] mb-10 font-sans italic opacity-80; }
 
 /* Others */
-.markdown-body ul { @apply list-disc ml-8 mb-10 space-y-4 text-brand-navy/90 font-serif text-lg; }
-.markdown-body li { @apply pl-3; }
-.markdown-body blockquote { @apply border-l-8 border-brand-accent bg-brand-accent/5 p-10 italic mb-12 mx-0 rounded-r-sm text-2xl text-brand-navy/80 leading-normal font-serif; }
+.markdown-body ul { @apply list-disc ml-6 mb-6 space-y-3 text-brand-navy/95 font-serif text-base md:text-lg; }
+.markdown-body li { @apply pl-2; }
+.markdown-body blockquote { @apply border-l-4 md:border-l-8 border-brand-accent bg-brand-accent/5 p-6 md:p-8 italic mb-8 mx-0 rounded-r-sm text-lg md:text-xl lg:text-2xl text-brand-navy/80 leading-relaxed font-serif; }
 .markdown-body code { @apply bg-brand-bg text-brand-corporate px-2 py-0.5 rounded font-mono text-sm font-semibold; }
-.markdown-body pre { @apply bg-brand-navy text-brand-ivory p-10 rounded-sm mb-12 overflow-x-auto font-mono text-sm leading-relaxed shadow-2xl border-l-[12px] border-brand-accent/50; }
+.markdown-body pre { @apply bg-brand-navy text-brand-ivory p-6 md:p-10 rounded-sm mb-8 overflow-x-auto font-mono text-xs md:text-sm leading-relaxed shadow-2xl border-l-[12px] border-brand-accent/50; }

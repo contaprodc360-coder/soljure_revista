@@ -331,7 +331,7 @@ export default function BookCompendium({
             `).join('')}
 
             <div class="toc-item" style="margin-top: 20px;"><span><strong>Cierre Académico</strong></span></div>
-            <div class="toc-item"><span>Bibliografía Oficial y Legal</span><span class="toc-dots"></span><span>IX</span></div>
+            <div class="toc-item"><span>Fuentes Bibliográficas y Jurisprudenciales de Consulta</span><span class="toc-dots"></span><span>IX</span></div>
             <div class="toc-item"><span>Anexos Básicos Ecuatorianos</span><span class="toc-dots"></span><span>X</span></div>
           </div>
           <hr class="page-break"/>
@@ -357,7 +357,7 @@ export default function BookCompendium({
           ${chaptersHtml}
 
           <!-- BIBLIOGRAPHY -->
-          <div class="section-title">Bibliografía Oficial y Fuentes de Consulta</div>
+          <div class="section-title">Fuentes Bibliográficas y Jurisprudenciales de Consulta</div>
           <div class="text-justify" style="margin-top: 25px; font-size: 13.5px; color: #334155;">
             <p>• Servicio de Rentas Internas del Ecuador (SRI). (2026). <em>Resoluciones vigentes para retenciones de Impuesto a la Renta e Impuesto al Valor Agregado</em>. Registro Oficial de la República de Ecuador.</p>
             <p>• Asamblea Nacional de la República del Ecuador. (2025). <em>Ley Orgánica de Régimen Tributario Interno (LORTI) con sus reformas acumuladas</em>. Corporación de Estudios y Publicaciones.</p>
@@ -1032,7 +1032,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                   onClick={() => setSelectedBookSection('bibliografia')}
                   className={`w-full text-justify p-3 text-[11px] font-bold uppercase tracking-widest rounded-lg transition-all flex items-center gap-2 border ${selectedBookSection === 'bibliografia' ? 'bg-brand-navy text-white border-brand-navy' : 'bg-white text-brand-slate hover:bg-slate-50 border-brand-border'}`}
                 >
-                  <FileText size={13} className="text-brand-accent" /> Bibliografía Oficial
+                  <FileText size={13} className="text-brand-accent" /> Fuentes de Consulta
                 </button>
 
                 <button
@@ -1258,7 +1258,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                       <h4 className="font-bold text-xs uppercase tracking-[0.15em] text-[#B59441] border-b border-brand-border pb-1 mb-3">Cierre Académico y Materiales</h4>
                       <div className="space-y-3">
                         <div className="flex justify-between items-baseline group cursor-pointer" onClick={() => setSelectedBookSection('bibliografia')}>
-                          <span className="font-semibold group-hover:text-brand-accent transition-colors">Bibliografía de Textos Legales y NIIF</span>
+                          <span className="font-semibold group-hover:text-brand-accent transition-colors">Fuentes Bibliográficas y Jurisprudenciales de Consulta</span>
                           <span className="flex-1 mx-2 border-b border-dotted border-slate-300"></span>
                           <span className="font-mono text-xs">Pág. IX</span>
                         </div>
@@ -1407,7 +1407,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                   </div>
 
                   <h2 className="text-3xl font-serif font-black text-brand-navy uppercase tracking-tight leading-snug mb-8 text-center">
-                    Bibliografía Oficial y Legal
+                    Fuentes Bibliográficas y Jurisprudenciales de Consulta
                   </h2>
 
                   <div className="space-y-6 text-justify text-[#334155] font-sans text-xs max-w-2xl mx-auto leading-relaxed">

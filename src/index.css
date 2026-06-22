@@ -123,3 +123,21 @@
 .markdown-body blockquote { @apply border-l-4 md:border-l-8 border-brand-accent bg-brand-accent/5 p-6 md:p-8 italic mb-8 mx-0 rounded-r-sm text-lg md:text-xl lg:text-2xl text-brand-navy/80 leading-relaxed font-serif; }
 .markdown-body code { @apply bg-brand-bg text-brand-corporate px-2 py-0.5 rounded font-mono text-sm font-semibold; }
 .markdown-body pre { @apply bg-brand-navy text-brand-ivory p-6 md:p-10 rounded-sm mb-8 overflow-x-auto font-mono text-xs md:text-sm leading-relaxed shadow-2xl border-l-[12px] border-brand-accent/50; }
+
+/* Compact Markdown Sizing for Slides, Books, and AI insights preventing overlapping line heights */
+.markdown-body-compact h1 { @apply text-xl md:text-2xl font-serif mb-3 text-brand-navy border-b border-brand-accent/20 pb-2 scroll-mt-24 tracking-tight leading-snug; }
+.markdown-body-compact h2 { @apply text-base md:text-lg font-serif mb-2 mt-4 text-brand-navy scroll-mt-24 tracking-tight border-b border-brand-accent/10 pb-1 leading-snug; }
+.markdown-body-compact h3 { @apply text-sm md:text-base font-serif mb-2 mt-3 text-brand-navy scroll-mt-24 leading-snug; }
+.markdown-body-compact p { @apply mb-3 leading-relaxed text-xs text-brand-navy/95 font-sans text-justify; }
+
+.markdown-body-compact table { @apply w-full border-collapse bg-white text-left text-[11px] mb-4; }
+.markdown-body-compact thead { @apply border-b-2 border-brand-accent bg-brand-navy; }
+.markdown-body-compact .table-wrapper { @apply w-full overflow-x-auto mb-4 rounded border border-brand-navy/10 shadow-sm; }
+.markdown-body-compact th { @apply text-white text-[8px] uppercase tracking-[0.1em] p-2 font-bold border-r border-[#ffffff20] last:border-r-0; }
+.markdown-body-compact td { @apply p-2 text-[10px] border-b border-brand-border text-brand-navy font-sans last:border-r-0 leading-normal; }
+
+.markdown-body-compact ul { @apply list-disc ml-4 mb-3 space-y-1 text-brand-navy/95 font-sans text-[11px]; }
+.markdown-body-compact li { @apply pl-1; }
+.markdown-body-compact blockquote { @apply border-l-2 border-brand-accent bg-brand-accent/5 p-3 italic mb-4 mx-0 rounded-r-xs text-[11px] text-brand-navy/80 leading-relaxed font-sans; }
+.markdown-body-compact code { @apply bg-brand-bg text-brand-corporate px-1 py-0.5 rounded font-mono text-[10px] font-semibold; }
+.markdown-body-compact pre { @apply bg-brand-navy text-brand-ivory p-3 rounded-xs mb-4 overflow-x-auto font-mono text-[10px] leading-relaxed shadow-md border-l-4 border-brand-accent/50; }

@@ -1368,7 +1368,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
 
                       {/* Main chapter content */}
                       <div className="prose prose-sm max-w-none text-justify border-t border-brand-border/40 pt-6 leading-relaxed">
-                        <div className="markdown-body text-xs font-light text-slate-800 leading-relaxed font-sans space-y-4">
+                        <div className="markdown-body-compact text-xs font-light text-slate-800 leading-relaxed font-sans space-y-4">
                           <ReactMarkdown remarkPlugins={[remarkGfm]}>
                             {matchedChapter.content}
                           </ReactMarkdown>
@@ -1728,7 +1728,7 @@ La asesoría preventiva en litigación y arbitraje constituye un elemento indisc
                     </div>
 
                     <div className="prose prose-sm font-sans text-brand-navy/85 max-w-none text-justify border-t border-brand-border/40 pt-6 leading-relaxed">
-                      <div className="markdown-body text-xs font-light text-slate-800 leading-relaxed font-sans space-y-4 font-normal">
+                      <div className="markdown-body-compact text-xs font-light text-slate-800 leading-relaxed font-sans space-y-4 font-normal">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {selectedFicha.contentSnapshot}
                         </ReactMarkdown>

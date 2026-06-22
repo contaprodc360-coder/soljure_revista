@@ -450,7 +450,8 @@ export default function App() {
 
   const isAdmin = (
     user?.email === 'soljure@gmail.com' || 
-    user?.email === 'admin@soljure.com'
+    user?.email === 'admin@soljure.com' ||
+    user?.email === 'contaprodc360@gmail.com'
   );
 
   useEffect(() => {
@@ -1228,6 +1229,9 @@ export default function App() {
                   }}
                   isAdmin={isAdmin}
                   onRegenerateAll={() => setShowConfirmRegen(true)}
+                  onDeleteEditorial={async (id) => {
+                    await deleteEditorialFromDb(id);
+                  }}
                 />
               )}
             </motion.div>
@@ -1519,7 +1523,8 @@ function MagazineView({
   onAreaChange,
   onActivateGenerator,
   isAdmin = false,
-  onRegenerateAll
+  onRegenerateAll,
+  onDeleteEditorial
 }: { 
   editorials: Editorial[], 
   allEditorials?: Editorial[],
@@ -1546,7 +1551,8 @@ function MagazineView({
   onAreaChange: (area: string) => void,
   onActivateGenerator: () => void,
   isAdmin?: boolean,
-  onRegenerateAll?: () => void
+  onRegenerateAll?: () => void,
+  onDeleteEditorial?: (id: string) => Promise<void>
 }) {
   const areas = ['TODOS', ...Object.values(ExpertiseArea)];
   const [viewTab, setViewTab] = useState<'main' | 'history'>('main');
@@ -1936,7 +1942,25 @@ function MagazineView({
                     {ed.area}
                   </span>
                 </div>
-                <span className="text-brand-slate/40 text-[10px] font-bold uppercase tracking-widest">{ed.readTime}</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-brand-slate/40 text-[10px] font-bold uppercase tracking-widest">{ed.readTime}</span>
+                  {isAdmin && (
+                    <button
+                      onClick={async (e) => {
+                        e.stopPropagation();
+                        if (confirm('¿Seguro que deseas eliminar este artículo permanentemente?')) {
+                          if (onDeleteEditorial && ed.id) {
+                            await onDeleteEditorial(ed.id);
+                          }
+                        }
+                      }}
+                      className="p-1.5 bg-red-50 text-red-500 border border-red-100 rounded-lg hover:bg-red-500 hover:text-white transition-all shadow-sm flex items-center justify-center z-20"
+                      title="Eliminar artículo"
+                    >
+                      <Trash2 size={13} />
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Cover Image */}
@@ -6088,7 +6112,7 @@ function EditorialViewer({
 
           {/* Contents area with scrollbar inside limits */}
           <div className="flex-1 overflow-y-auto pr-2 scrollbar-thin text-justify text-xs leading-relaxed prose prose-sm prose-slate max-w-none text-brand-navy/95 font-medium">
-            <div className="markdown-body">
+            <div className="markdown-body-compact">
               <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>
                 {pageMarkdown}
               </ReactMarkdown>
@@ -7718,7 +7742,7 @@ function EditorialStudio({ onSave, initialEditorial, editorials = [] }: { onSave
                 <Sparkles size={14} />
                 Technical Insight & Compliance Review
               </div>
-              <div className="prose prose-sm prose-slate max-w-none text-brand-navy/90 font-sans">
+              <div className="markdown-body-compact text-brand-navy/90 font-sans">
                 <div className="text-sm leading-relaxed">
                   <ReactMarkdown remarkPlugins={[remarkGfm]} components={MarkdownComponents}>{aiAnalysis}</ReactMarkdown>
                 </div>

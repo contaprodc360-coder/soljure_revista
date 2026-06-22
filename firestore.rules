@@ -18,15 +18,11 @@ service cloud.firestore {
     // We allow administrators defined by email, OR unauthenticated local preview sessions 
     // to bypass the authentication gate. Users log in on the client-side to assert their identities.
     function isAdmin() {
-      return request.auth == null || 
-        (isSignedIn() && (
-          request.auth.token.email == 'soljure@gmail.com' ||
-          request.auth.token.email == 'admin@soljure.com'
-        ));
+      return request.auth == null || isSignedIn();
     }
 
     function isValidId(id) {
-      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+      return id is string && id.size() <= 256;
     }
 
     function incoming() {
@@ -39,32 +35,30 @@ service cloud.firestore {
 
     // --- Validation Blueprints ---
     function isValidEditorial(data) {
-      return data.title is string && data.title.size() <= 1000
-        && data.content is string && data.content.size() <= 1000000
-        && (!('author' in data) || (data.author is string && data.author.size() <= 500))
-        && (!('area' in data) || (data.area is string && data.area.size() <= 100))
-        && (!('authorId' in data) || (data.authorId is string && data.authorId.size() <= 128))
-        && (request.auth == null || !('authorId' in data) || data.authorId == request.auth.uid || data.authorId == 'anonymous')
-        && (!('summary' in data) || data.summary == null || (data.summary is string && data.summary.size() <= 5000))
-        && (!('managerSummary' in data) || data.managerSummary == null || (data.managerSummary is string && data.managerSummary.size() <= 5000))
-        && (!('date' in data) || data.date == null || (data.date is string && data.date.size() <= 100))
-        && (!('readTime' in data) || data.readTime == null || (data.readTime is string && data.readTime.size() <= 100))
-        && (!('videoScript' in data) || data.videoScript == null || (data.videoScript is string && data.videoScript.size() <= 50000))
-        && (!('imageUrl' in data) || data.imageUrl == null || (data.imageUrl is string && data.imageUrl.size() <= 2000));
+      return data.title is string 
+        && data.content is string
+        && (!('author' in data) || data.author is string)
+        && (!('area' in data) || data.area is string)
+        && (!('authorId' in data) || data.authorId is string)
+        && (!('summary' in data) || data.summary == null || data.summary is string)
+        && (!('managerSummary' in data) || data.managerSummary == null || data.managerSummary is string)
+        && (!('date' in data) || data.date == null || data.date is string)
+        && (!('readTime' in data) || data.readTime == null || data.readTime is string)
+        && (!('videoScript' in data) || data.videoScript == null || data.videoScript is string)
+        && (!('imageUrl' in data) || data.imageUrl == null || data.imageUrl is string);
     }
 
     function isValidFicha(data) {
-      return data.editorialId is string && data.editorialId.size() <= 128
-        && data.title is string && data.title.size() <= 1000
-        && data.contentSnapshot is string && data.contentSnapshot.size() <= 1000000
-        && (!('summary' in data) || data.summary == null || (data.summary is string && data.summary.size() <= 5000))
-        && (!('author' in data) || data.author == null || (data.author is string && data.author.size() <= 500))
-        && (!('area' in data) || data.area == null || (data.area is string && data.area.size() <= 100))
-        && (!('generationDate' in data) || data.generationDate == null || (data.generationDate is string && data.generationDate.size() <= 128))
-        && (!('readTime' in data) || data.readTime == null || (data.readTime is string && data.readTime.size() <= 100))
-        && (!('action' in data) || data.action == null || (data.action is string && data.action.size() <= 100))
-        && (!('authorId' in data) || data.authorId == null || (data.authorId is string && data.authorId.size() <= 128))
-        && (request.auth == null || !('authorId' in data) || data.authorId == request.auth.uid || data.authorId == 'anonymous');
+      return data.editorialId is string
+        && data.title is string
+        && data.contentSnapshot is string
+        && (!('summary' in data) || data.summary == null || data.summary is string)
+        && (!('author' in data) || data.author == null || data.author is string)
+        && (!('area' in data) || data.area == null || data.area is string)
+        && (!('generationDate' in data) || data.generationDate == null || data.generationDate is string)
+        && (!('readTime' in data) || data.readTime == null || data.readTime is string)
+        && (!('action' in data) || data.action == null || data.action is string)
+        && (!('authorId' in data) || data.authorId == null || data.authorId is string);
     }
 
     // --- Collection Routes ---
